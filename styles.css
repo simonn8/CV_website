@@ -304,13 +304,15 @@ body.site-body {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(24px, 5.5vw, 56px);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.5px;
   color: var(--text-primary);
   margin-bottom: 36px;
   text-transform: uppercase;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-aura-card {
@@ -1291,13 +1293,47 @@ body.site-body {
   color: var(--text-primary);
 }
 
+/* ==================== LIBRARY PAGINATION ==================== */
+.library-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.show-more-books-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-more-books-btn:hover {
+  border-color: var(--accent-active);
+  color: var(--accent-active);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.show-more-meta {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
 /* ==================== PERSISTENT FLOATING AUDIO DOCK ==================== */
 .floating-audio-dock {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(12, 13, 16, 0.92);
+  background: rgba(12, 13, 16, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-strong);
@@ -1311,7 +1347,7 @@ body.site-body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .dock-left {
@@ -1322,6 +1358,8 @@ body.site-body {
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
+  flex: 1;
+  min-width: 0;
   max-width: 500px;
 }
 
@@ -1342,11 +1380,14 @@ body.site-body {
   color: var(--text-primary);
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .dock-center {
   display: flex;
+  align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .dock-btn {
@@ -1355,9 +1396,16 @@ body.site-body {
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 3px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
   cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .dock-btn:hover, .dock-btn.active {
@@ -1367,6 +1415,7 @@ body.site-body {
 
 .dock-right {
   display: flex;
+  flex-shrink: 0;
 }
 
 .dock-link {
@@ -1472,8 +1521,12 @@ body.site-body {
   }
 
   .hero-title {
-    font-size: clamp(28px, 8vw, 42px);
+    font-size: clamp(20px, 6.2vw, 32px);
+    line-height: 1.12;
+    letter-spacing: -0.3px;
     margin-bottom: 20px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-aura-card {
@@ -1603,20 +1656,34 @@ body.site-body {
 
   /* Floating Audio Dock */
   .floating-audio-dock {
-    max-width: calc(100vw - 24px);
+    position: fixed;
+    bottom: 12px;
     left: 12px;
     right: 12px;
-    transform: none;
-    bottom: 12px;
+    width: auto;
+    max-width: calc(100vw - 24px);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
     padding: 8px 12px;
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
   }
 
   .dock-left {
-    max-width: 140px;
+    flex: 1;
+    min-width: 0;
+    max-width: none;
   }
 
   .dock-title {
     font-size: 11px;
+  }
+
+  .dock-btn {
+    min-width: 32px;
+    height: 32px;
+    font-size: 11px;
+    padding: 0;
   }
 
   .dock-right {

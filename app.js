@@ -884,6 +884,7 @@ async function initLibraryCatalog() {
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       currentSearch = e.target.value.trim().toLowerCase();
+      visibleBooksCount = 8;
       renderLibrary();
     });
   }
@@ -892,6 +893,7 @@ async function initLibraryCatalog() {
     clearSearchBtn.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
       currentSearch = '';
+      visibleBooksCount = 8;
       renderLibrary();
     });
   }
@@ -901,6 +903,7 @@ async function initLibraryCatalog() {
       shelfTabs.forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
       currentFilter = tab.getAttribute('data-filter');
+      visibleBooksCount = 8;
       renderLibrary();
     });
   });
@@ -908,6 +911,7 @@ async function initLibraryCatalog() {
   if (sortSelect) {
     sortSelect.addEventListener('change', (e) => {
       currentSort = e.target.value;
+      visibleBooksCount = 8;
       renderLibrary();
     });
   }
@@ -936,9 +940,12 @@ async function initLibraryCatalog() {
   }
 }
 
+let visibleBooksCount = 8;
+
 function renderLibrary() {
   const container = document.getElementById('dynamic-books-container');
   const resultsCount = document.getElementById('results-count');
+  const paginationContainer = document.getElementById('library-pagination');
   if (!container) return;
 
   let filtered = allBooks.filter((book) => {
@@ -971,13 +978,16 @@ function renderLibrary() {
   if (filtered.length === 0) {
     container.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--text-muted); font-family: var(--font-mono); font-size: 13px;">
-        No volumes found matching "${currentSearch}".
+        No volumes found matching "${escapeHtml(currentSearch)}".
       </div>
     `;
+    if (paginationContainer) paginationContainer.innerHTML = '';
     return;
   }
 
-  container.innerHTML = filtered.map((book) => {
+  const visibleBooks = filtered.slice(0, visibleBooksCount);
+
+  container.innerHTML = visibleBooks.map((book) => {
     const isReading = book.shelf === 'currently-reading';
     const shelfClass = isReading ? 'reading' : 'read';
     const shelfLabel = isReading ? 'CURRENTLY READING' : 'READ';
@@ -1005,6 +1015,26 @@ function renderLibrary() {
       </article>
     `;
   }).join('');
+
+  if (paginationContainer) {
+    if (filtered.length > visibleBooksCount) {
+      paginationContainer.innerHTML = `
+        <button id="show-more-books-btn" class="show-more-books-btn">
+          <span>✦ SHOW MORE VOLUMES</span>
+          <span class="show-more-meta">(${visibleBooks.length} of ${filtered.length})</span>
+        </button>
+      `;
+      const btn = document.getElementById('show-more-books-btn');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          visibleBooksCount += 8;
+          renderLibrary();
+        });
+      }
+    } else {
+      paginationContainer.innerHTML = '';
+    }
+  }
 }
 
 function renderStars(rating, isReading) {
