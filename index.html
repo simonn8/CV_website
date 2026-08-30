@@ -3,517 +3,587 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simon's 2000s Web Haven | CV, Projects & DJ Sets</title>
+  <title>Simon's Web Jam '96 | Space Portfolio, CV &amp; Stellar Bookshelf</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪐</text></svg>">
 </head>
-<body>
+<body class="space-body">
 
-  <!-- Top Marquee Banner -->
-  <div class="marquee-container">
-    <div class="marquee-text">
-      <span>★ WELCOME TO SIMON'S HOMEPAGE ★ &bull; BEST VIEWED AT 1024x768 &bull; CODING, CV, PROJECTS &amp; UNDERGROUND DJ SETS &bull; UPDATED FOR 2000s NOSTALGIA ★</span>
+  <!-- Twinkling Starfield Background Layers -->
+  <div class="stars-layer stars-small"></div>
+  <div class="stars-layer stars-medium"></div>
+  <div class="stars-layer stars-large"></div>
+
+  <!-- Top 1996 Cosmic Marquee Banner -->
+  <header class="space-marquee-header">
+    <div class="space-marquee-track">
+      <span>🚀 WELCOME TO SIMON'S WEB JAM '96 &bull; BEST VIEWED WITH NETSCAPE NAVIGATOR &bull; SYSTEM THINKING, CV, DJ AUDIO &amp; 47-BOOK STELLAR LIBRARY &bull; TRANSMISSION LIVE FROM SECTOR 1996 🪐</span>
     </div>
+  </header>
+
+  <!-- =========================================================================
+       1. MAIN SCREEN: 1996 SPACE JAM SOLAR SYSTEM HUB
+       ========================================================================= -->
+  <div class="solar-hub-wrapper" id="solar-hub">
+    
+    <!-- Central Space Jam Logo Emblem -->
+    <div class="space-jam-logo-box">
+      <div class="logo-sparkle-top">✨</div>
+      <h1 class="space-jam-title">
+        <span class="title-sub">SIMON'S</span>
+        <span class="title-main">WEB JAM</span>
+        <span class="title-year">'96</span>
+      </h1>
+      <p class="space-jam-subtitle">★ THE ULTIMATE CYBER-PORTFOLIO IN ORBIT ★</p>
+    </div>
+
+    <!-- Planetary Orbit Navigation Menu -->
+    <nav class="planetary-system">
+      
+      <!-- Planet 1: Bio -->
+      <button class="planet-btn" data-target="planet-bio" title="Planet Bio">
+        <div class="planet-sphere planet-bio-sphere">
+          <span class="planet-icon">🪐</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">PLANET BIO</span>
+      </button>
+
+      <!-- Planet 2: CV -->
+      <button class="planet-btn" data-target="planet-cv" title="Planet CV &amp; Skills">
+        <div class="planet-sphere planet-cv-sphere">
+          <span class="planet-icon">📋</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">PLANET CV</span>
+      </button>
+
+      <!-- Planet 3: Projects -->
+      <button class="planet-btn" data-target="planet-projects" title="Jump Station (Projects)">
+        <div class="planet-sphere planet-projects-sphere">
+          <span class="planet-icon">🚀</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">JUMP STATION</span>
+      </button>
+
+      <!-- Planet 4: DJ Sets -->
+      <button class="planet-btn" data-target="planet-audio" title="Lunar Tunes (DJ Mixes)">
+        <div class="planet-sphere planet-audio-sphere">
+          <span class="planet-icon">🎧</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">LUNAR TUNES</span>
+      </button>
+
+      <!-- Planet 5: Bookshelf -->
+      <button class="planet-btn" data-target="planet-books" title="Stellar Bookshelf (Database)">
+        <div class="planet-sphere planet-books-sphere">
+          <span class="planet-icon">📚</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">STELLAR BOOKS</span>
+      </button>
+
+      <!-- Planet 6: Transmission / Contact -->
+      <button class="planet-btn" data-target="planet-contact" title="Transmission Hub">
+        <div class="planet-sphere planet-contact-sphere">
+          <span class="planet-icon">📡</span>
+          <div class="planet-ring"></div>
+        </div>
+        <span class="planet-label">TRANSMISSION</span>
+      </button>
+
+    </nav>
+
+    <!-- Planetary Hub Quick Navigation Bar -->
+    <div class="hub-nav-text-links">
+      [ <a href="#bio" data-target="planet-bio">Bio</a> ] &bull;
+      [ <a href="#cv" data-target="planet-cv">CV</a> ] &bull;
+      [ <a href="#projects" data-target="planet-projects">Projects</a> ] &bull;
+      [ <a href="#audio" data-target="planet-audio">Lunar Tunes</a> ] &bull;
+      [ <a href="#books" data-target="planet-books">Bookshelf (DB)</a> ] &bull;
+      [ <a href="#contact" data-target="planet-contact">Transmission</a> ]
+    </div>
+
   </div>
 
-  <div class="desktop-container">
 
-    <!-- Main Retro Window -->
-    <main class="retro-window main-window">
-      <!-- Title Bar -->
-      <div class="window-titlebar">
+  <!-- =========================================================================
+       2. PLANETARY SUB-WINDOWS (CONTENT PANELS)
+       ========================================================================= -->
+  <div class="content-overlay-container" id="content-container" style="display: none;">
+
+    <div class="cosmic-window">
+
+      <!-- Window Titlebar -->
+      <div class="cosmic-titlebar">
         <div class="titlebar-left">
-          <span class="window-icon">💾</span>
-          <span class="window-title">Simon_Portfolio.exe - [Personal Homepage &amp; CV]</span>
+          <button class="cosmic-back-btn" id="back-to-orbit-btn">
+            ⬅ RETURN TO SOLAR ORBIT
+          </button>
+          <span class="cosmic-window-title" id="active-panel-title">PLANET BIO</span>
         </div>
-        <div class="window-controls">
-          <button class="win-btn" title="Minimize">_</button>
-          <button class="win-btn" title="Maximize">□</button>
-          <button class="win-btn close-btn" title="Close">✕</button>
+        <div class="titlebar-right">
+          <span class="coord-tag">SECTOR: 1996.SPACE</span>
+          <button class="cosmic-close-btn" id="close-modal-btn" title="Close Window">✕</button>
         </div>
       </div>
 
-      <!-- Menu Bar -->
-      <nav class="window-menubar">
-        <span class="menu-item"><u>F</u>ile</span>
-        <span class="menu-item"><u>E</u>dit</span>
-        <span class="menu-item"><u>V</u>iew</span>
-        <span class="menu-item"><u>P</u>rojects</span>
-        <span class="menu-item"><u>M</u>usic</span>
-        <span class="menu-item"><u>H</u>elp</span>
-      </nav>
-
-      <!-- Navigation Tabs -->
-      <div class="window-tabs">
-        <button class="tab-btn active" data-tab="about">🏠 About Me</button>
-        <button class="tab-btn" data-tab="cv">📄 CV &amp; Skills</button>
-        <button class="tab-btn" data-tab="projects">🚀 Projects</button>
-        <button class="tab-btn" data-tab="dj-sets">🎧 DJ Sets</button>
-        <button class="tab-btn" data-tab="books">📚 Bookshelf</button>
-        <button class="tab-btn" data-tab="contact">✉️ Guestbook / Contact</button>
+      <!-- Quick Planet Bar on top of every section -->
+      <div class="quick-orbit-bar">
+        <button class="quick-orbit-btn" data-target="planet-bio">🪐 Bio</button>
+        <button class="quick-orbit-btn" data-target="planet-cv">📋 CV</button>
+        <button class="quick-orbit-btn" data-target="planet-projects">🚀 Projects</button>
+        <button class="quick-orbit-btn" data-target="planet-audio">🎧 DJ Audio</button>
+        <button class="quick-orbit-btn" data-target="planet-books">📚 Bookshelf (DB)</button>
+        <button class="quick-orbit-btn" data-target="planet-contact">📡 Transmission</button>
       </div>
 
-      <!-- Window Content Body -->
-      <div class="window-body">
+      <!-- Scrollable Window Content -->
+      <div class="cosmic-body">
 
-        <!-- TAB 1: ABOUT ME -->
-        <section id="tab-about" class="tab-content active">
-          <div class="profile-hero">
-            <div class="avatar-box">
-              <div class="avatar-frame">
-                <span class="avatar-placeholder">🎧💼</span>
+        <!-- ==================== SECTION 1: PLANET BIO ==================== -->
+        <section id="planet-bio" class="cosmic-section">
+          <div class="cosmic-hero-banner">
+            <div class="hero-avatar-space">
+              <div class="avatar-cosmic-glow">
+                <span class="avatar-emoji">🎧💼</span>
               </div>
-              <p class="avatar-caption">● STATUS: BRIDGING STRATEGY &amp; IT</p>
+              <div class="space-badge-status">● ORBITING EARTH &bull; STRATEGY &amp; IT</div>
             </div>
-            <div class="hero-text">
-              <h2>Simon Nachtergaele 👋</h2>
-              <p class="tagline">Master in Business Engineering &bull; Supply Chain Digitalisation &bull; Electronic Music Enthusiast</p>
-              <div class="status-box">
-                <strong>Executive Summary:</strong> System thinker with a Master’s in Business Engineering (Data Science) and a proven track record of bridging business strategy and IT. Passionate about root-cause analysis, system design, low-code/automation, and translating long-term strategy into measurable successes.
+            <div class="hero-space-content">
+              <h2 class="space-glow-text">Simon Nachtergaele</h2>
+              <p class="space-tagline">Master of Business Engineering (Data Science) &bull; Supply Chain Digitalisation &bull; DJ / Sound Explorer</p>
+              
+              <div class="cosmic-highlight-box">
+                <h3 class="highlight-title">🌟 EXECUTIVE MISSION STATEMENT</h3>
+                <p>System thinker with a Master’s in Business Engineering and a proven track record of bridging business strategy and IT. Passionate about root-cause analysis, system design, low-code/automation ecosystems, and translating long-term strategy into measurable, short-term successes.</p>
               </div>
             </div>
           </div>
 
-          <hr class="retro-divider" />
-
-          <div class="content-grid">
-            <div class="retro-card">
-              <h3>✨ What I Do &amp; Build</h3>
-              <ul>
-                <li><strong>Supply Chain &amp; Digitalisation:</strong> Streamlining end-to-end operations, CRM implementations, and stock visibility platforms.</li>
-                <li><strong>System Thinking &amp; Architecture:</strong> Solving high-variability challenges using QRM, Lean principles, and data-driven root-cause analysis.</li>
-                <li><strong>Tech &amp; Low-Code Ecosystems:</strong> Salesforce, Python &amp; Java, Pipedrive, Bubble.io, N8N, and Web Tech.</li>
-                <li><strong>Audio &amp; DJ Sets:</strong> Curating underground soundscapes, electronic mixes, and live recordings.</li>
+          <div class="cosmic-grid-2">
+            <div class="cosmic-card">
+              <h3 class="card-heading">🛸 FLIGHT LOG &bull; SPECIALIZATIONS</h3>
+              <ul class="cosmic-bullet-list">
+                <li><strong>Supply Chain &amp; Digitalisation:</strong> Optimizing end-to-end flows, real-time inventory visibility, and CRM automation.</li>
+                <li><strong>System Thinking &amp; Change Management:</strong> QRM Silver methodology for high-variability manufacturing and lead time compression.</li>
+                <li><strong>Tech &amp; Data Stack:</strong> Python, Java, Salesforce, Looker Studio, Google Analytics, Bubble.io, N8N, HTML/CSS/JS.</li>
+                <li><strong>Underground Audio:</strong> Live DJ mixing, deep harmonic track curation, and electro/house sessions.</li>
               </ul>
             </div>
 
-            <div class="retro-card">
-              <h3>🕹️ Quick Profile &amp; Stats</h3>
-              <table class="retro-table">
-                <tr><td><strong>Location:</strong></td><td>Belgium 🇧🇪 (Gent / Sint-Niklaas)</td></tr>
-                <tr><td><strong>Current Role:</strong></td><td>Supply Chain Planner &amp; Digitalisation @ Sports &amp; Leisure Group NV</td></tr>
-                <tr><td><strong>Degree:</strong></td><td>M.Sc. Business Engineering (Data Science) - KU Leuven</td></tr>
+            <div class="cosmic-card">
+              <h3 class="card-heading">🛰️ TELEMETRY &amp; VITALS</h3>
+              <table class="cosmic-table">
+                <tr><td><strong>Home Base:</strong></td><td>Belgium 🇧🇪 (Gent / Sint-Niklaas)</td></tr>
+                <tr><td><strong>Current Station:</strong></td><td>Supply Chain Planner &amp; Digitalisation @ Sports &amp; Leisure Group NV</td></tr>
+                <tr><td><strong>Education:</strong></td><td>M.Sc. Business Engineering (Data Science) - KU Leuven</td></tr>
                 <tr><td><strong>Certification:</strong></td><td>Sirris QRM Silver (2025) 🏅</td></tr>
                 <tr><td><strong>Languages:</strong></td><td>Dutch (Native), English (Fluent), French, Spanish</td></tr>
-                <tr><td><strong>Contact:</strong></td><td><a href="mailto:simon.nachtergaele@gmail.com">simon.nachtergaele@gmail.com</a></td></tr>
+                <tr><td><strong>Direct Frequency:</strong></td><td><a href="mailto:simon.nachtergaele@gmail.com" class="neon-link">simon.nachtergaele@gmail.com</a></td></tr>
               </table>
             </div>
           </div>
         </section>
 
-        <!-- TAB 2: CV & SKILLS -->
-        <section id="tab-cv" class="tab-content">
-          <div class="section-header">
-            <div>
-              <h2>📄 Curriculum Vitae - Simon Nachtergaele</h2>
-              <p class="subtitle">Sint-Niklaas / Gent, Belgium &bull; simon.nachtergaele@gmail.com &bull; +32 494 75 37 98</p>
-            </div>
-            <button class="win-btn retro-action-btn" onclick="window.print()">🖨️ Print CV</button>
+
+        <!-- ==================== SECTION 2: PLANET CV ==================== -->
+        <section id="planet-cv" class="cosmic-section">
+          <div class="section-title-wrap">
+            <h2 class="space-glow-text">📋 Curriculum Vitae &bull; Simon Nachtergaele</h2>
+            <button class="retro-btn-space" onclick="window.print()">🖨️ PRINT MISSION DOSSIER</button>
           </div>
 
           <!-- Professional Experience -->
-          <div class="cv-section">
-            <h3 class="cv-section-title">💼 Professional Experience</h3>
-            
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Sports &amp; Leisure Group NV &bull; Sint-Niklaas, Belgium</strong>
-                <span class="timeline-date">2025 - Present</span>
+          <div class="cosmic-card mb-20">
+            <h3 class="card-heading yellow-heading">💼 PROFESSIONAL EXPERIENCE</h3>
+
+            <div class="timeline-entry">
+              <div class="timeline-top">
+                <span class="company-name">Sports &amp; Leisure Group NV &bull; Sint-Niklaas, Belgium</span>
+                <span class="timeline-badge">2025 - Present</span>
               </div>
-              <div class="job-role"><em>Supply Chain Planner &amp; Digitalisation</em></div>
-              <ul class="cv-bullet-list">
-                <li>Managed the end-to-end supply chain of the Leisure business unit with an EBITDA of <strong>€2M</strong>, maintaining a holistic view of how sales, finance, production, and logistics tie together.</li>
-                <li>Reduced email traffic by <strong>40-60%</strong> by introducing a real-time stock visibility platform connecting subsidiary orders and inventory seamlessly.</li>
+              <div class="role-title">Supply Chain Planner &amp; Digitalisation</div>
+              <ul class="cosmic-bullet-list">
+                <li>Managed the end-to-end supply chain of the Leisure business unit with an EBITDA of <strong>€2M</strong>, giving me a holistic view of how sales, finance, production, and logistics tie together.</li>
+                <li>Reduced email traffic by <strong>40-60%</strong> by introducing a real-time stock visibility platform. The subsidiaries placed orders on the platform, connecting sales and inventory seamlessly.</li>
                 <li>Automated sales follow-up with clients by introducing <strong>Pipedrive</strong>, a lightweight CRM.</li>
-                <li>Established clear standard operating procedures for order intake and complaints to prepare future digitalisation efforts.</li>
+                <li>Established clear procedures for order intake and complaints in order to prepare future digitalisation efforts.</li>
               </ul>
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>24Flow &bull; Gent, Belgium</strong>
-                <span class="timeline-date">2024 - 2025</span>
+            <div class="timeline-entry mt-15">
+              <div class="timeline-top">
+                <span class="company-name">24Flow &bull; Gent, Belgium</span>
+                <span class="timeline-badge">2024 - 2025</span>
               </div>
-              <div class="job-role"><em>Solution Engineer</em></div>
-              <ul class="cv-bullet-list">
-                <li>End-to-end implementation of 24Flow’s MES software across multiple projects, from initial analysis to final delivery.</li>
-                <li>Built solutions on the <strong>Salesforce platform</strong>, gaining deep practical expertise in the low-code and enterprise tool ecosystem.</li>
-                <li>Delivered product demonstrations to prospective clients that effectively showcased measurable business benefits.</li>
+              <div class="role-title">Solution Engineer</div>
+              <ul class="cosmic-bullet-list">
+                <li>End-to-end implementation of 24Flow’s MES software across multiple projects, from initial analysis to delivery.</li>
+                <li>Built solutions on the <strong>Salesforce platform</strong>, which provided deep hands-on expertise in the enterprise low-code ecosystem.</li>
+                <li>Delivered live demos to prospective clients that effectively showcased the measurable benefits of the solution.</li>
               </ul>
             </div>
           </div>
 
           <!-- Certifications -->
-          <div class="cv-section">
-            <h3 class="cv-section-title">🏅 Certifications</h3>
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Sirris &bull; Gent, Belgium</strong>
-                <span class="timeline-date">2025</span>
+          <div class="cosmic-card mb-20">
+            <h3 class="card-heading yellow-heading">🏅 CERTIFICATIONS</h3>
+            <div class="timeline-entry">
+              <div class="timeline-top">
+                <span class="company-name">Sirris &bull; Gent, Belgium</span>
+                <span class="timeline-badge">2025</span>
               </div>
-              <div class="job-role"><em>QRM Silver (Quick Response Manufacturing)</em></div>
-              <p class="timeline-desc">System thinking and change management methodology similar to Lean and Six Sigma, with a focus on reducing global lead times in high-variability environments.</p>
+              <div class="role-title">QRM Silver (Quick Response Manufacturing)</div>
+              <p class="entry-desc">System thinking and change management methodology similar to Lean and Six Sigma, with a focus on reducing global lead times in high-variability environments.</p>
             </div>
           </div>
 
           <!-- Education -->
-          <div class="cv-section">
-            <h3 class="cv-section-title">🎓 Education</h3>
-            
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Katholieke Universiteit Leuven &bull; Leuven, Belgium</strong>
-                <span class="timeline-date">2022 - 2024</span>
+          <div class="cosmic-card mb-20">
+            <h3 class="card-heading yellow-heading">🎓 EDUCATION &amp; ACADEMICS</h3>
+
+            <div class="timeline-entry">
+              <div class="timeline-top">
+                <span class="company-name">Katholieke Universiteit Leuven &bull; Leuven, Belgium</span>
+                <span class="timeline-badge">2022 - 2024</span>
               </div>
-              <div class="job-role"><em>Master of Business Engineering — Major in Data Science</em></div>
+              <div class="role-title">Master of Business Engineering (Major in Data Science)</div>
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Institut Mines-Télécom Business School &bull; Paris, France</strong>
-                <span class="timeline-date">2023</span>
+            <div class="timeline-entry mt-10">
+              <div class="timeline-top">
+                <span class="company-name">Institut Mines-Télécom Business School &bull; Paris, France</span>
+                <span class="timeline-badge">2023</span>
               </div>
-              <div class="job-role"><em>Exchange Semester</em></div>
-              <p class="timeline-desc">Data Analytics coursework: built performance dashboards with Google Analytics &amp; Looker Studio.</p>
+              <div class="role-title">Exchange Semester</div>
+              <p class="entry-desc">Data Analytics course: built analytics dashboards with Google Analytics &amp; Looker Studio.</p>
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Katholieke Universiteit Leuven &bull; Leuven, Belgium</strong>
-                <span class="timeline-date">2019 - 2022</span>
+            <div class="timeline-entry mt-10">
+              <div class="timeline-top">
+                <span class="company-name">Katholieke Universiteit Leuven &bull; Leuven, Belgium</span>
+                <span class="timeline-badge">2019 - 2022</span>
               </div>
-              <div class="job-role"><em>Bachelor of Business Engineering</em></div>
+              <div class="role-title">Bachelor of Business Engineering</div>
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-head">
-                <strong>Universidad de Granada &bull; Granada, Spain</strong>
-                <span class="timeline-date">2021</span>
+            <div class="timeline-entry mt-10">
+              <div class="timeline-top">
+                <span class="company-name">Universidad de Granada &bull; Granada, Spain</span>
+                <span class="timeline-badge">2021</span>
               </div>
-              <div class="job-role"><em>Exchange Semester</em></div>
-              <p class="timeline-desc">Completed 4 out of 5 courses entirely in Spanish.</p>
+              <div class="role-title">Exchange Semester</div>
+              <p class="entry-desc">Completed 4 out of 5 courses in Spanish.</p>
             </div>
           </div>
 
-          <!-- Skills & Toolset Grid -->
-          <div class="cv-section">
-            <h3 class="cv-section-title">⚡ Skills &amp; Toolkit</h3>
-            <div class="skills-container">
-              <div class="skill-category">
-                <h4>💻 Tech, Data &amp; Systems</h4>
-                <div class="skill-tags">
-                  <span class="tag">Salesforce</span>
-                  <span class="tag">System Design</span>
-                  <span class="tag">Python</span>
-                  <span class="tag">Java</span>
-                  <span class="tag">Data Science</span>
-                  <span class="tag">Looker Studio</span>
-                  <span class="tag">Google Analytics</span>
-                  <span class="tag">HTML5 / CSS / JS</span>
-                  <span class="tag">Git &amp; GitHub</span>
+          <!-- Skills Badges Grid -->
+          <div class="cosmic-card">
+            <h3 class="card-heading yellow-heading">⚡ SKILLS &amp; ARSENAL</h3>
+            <div class="skills-grid">
+              <div class="skill-group">
+                <h4>💻 Systems &amp; Programming</h4>
+                <div class="space-tags">
+                  <span class="space-tag cyan-tag">Salesforce</span>
+                  <span class="space-tag cyan-tag">System Design</span>
+                  <span class="space-tag cyan-tag">Python</span>
+                  <span class="space-tag cyan-tag">Java</span>
+                  <span class="space-tag cyan-tag">Data Science</span>
+                  <span class="space-tag cyan-tag">Looker Studio</span>
+                  <span class="space-tag cyan-tag">Google Analytics</span>
+                  <span class="space-tag cyan-tag">HTML / CSS / JS</span>
+                  <span class="space-tag cyan-tag">Git &amp; GitHub</span>
                 </div>
               </div>
 
-              <div class="skill-category">
+              <div class="skill-group">
                 <h4>🛠️ CRM, Automation &amp; No-Code</h4>
-                <div class="skill-tags">
-                  <span class="tag">Pipedrive</span>
-                  <span class="tag">Salesforce CRM</span>
-                  <span class="tag">Bubble.io</span>
-                  <span class="tag">N8N</span>
-                  <span class="tag">MES Software</span>
-                  <span class="tag">Supply Chain Workflows</span>
+                <div class="space-tags">
+                  <span class="space-tag magenta-tag">Pipedrive</span>
+                  <span class="space-tag magenta-tag">Salesforce CRM</span>
+                  <span class="space-tag magenta-tag">Bubble.io</span>
+                  <span class="space-tag magenta-tag">N8N</span>
+                  <span class="space-tag magenta-tag">MES Software</span>
+                  <span class="space-tag magenta-tag">Supply Chain Workflows</span>
                 </div>
               </div>
 
-              <div class="skill-category">
+              <div class="skill-group">
                 <h4>🌍 Languages</h4>
-                <div class="skill-tags">
-                  <span class="tag">Dutch (Native)</span>
-                  <span class="tag">English (Full Professional)</span>
-                  <span class="tag">French (Professional Working)</span>
-                  <span class="tag">Spanish (Limited Working)</span>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h4>🎧 Creative &amp; Music</h4>
-                <div class="skill-tags">
-                  <span class="tag">DJ Performance</span>
-                  <span class="tag">Harmonic Mixing</span>
-                  <span class="tag">Track Curation</span>
-                  <span class="tag">Audio Production</span>
+                <div class="space-tags">
+                  <span class="space-tag lime-tag">Dutch (Native)</span>
+                  <span class="space-tag lime-tag">English (Full Professional)</span>
+                  <span class="space-tag lime-tag">French (Professional Working)</span>
+                  <span class="space-tag lime-tag">Spanish (Limited Working)</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- TAB 3: PROJECTS -->
-        <section id="tab-projects" class="tab-content">
-          <div class="section-header">
-            <h2>🚀 Featured Projects</h2>
-            <p class="subtitle">A living collection of my creations as I learn and build.</p>
+
+        <!-- ==================== SECTION 3: JUMP STATION (PROJECTS) ==================== -->
+        <section id="planet-projects" class="cosmic-section">
+          <div class="section-title-wrap">
+            <h2 class="space-glow-text">🚀 Jump Station &bull; Creations &amp; Experiments</h2>
+            <p class="section-desc">A launching pad for software, tools, and web explorations.</p>
           </div>
 
-          <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-              <div class="project-header">
-                <span class="project-icon">💾</span>
-                <h4>2000s Retro Personal Web Hub</h4>
+          <div class="cosmic-grid-3">
+            <div class="project-box">
+              <div class="project-orbit-icon">🌌</div>
+              <h4 class="project-title">1996 Space Jam Web Portal</h4>
+              <p class="project-desc">This very website! A retro Web 1.0 interplanetary portfolio, featuring an asynchronous JSON database engine, dynamic audio deck, and responsive celestial design.</p>
+              <div class="space-tags">
+                <span class="space-tag cyan-tag">HTML5</span>
+                <span class="space-tag cyan-tag">CSS3</span>
+                <span class="space-tag cyan-tag">JSON DB</span>
+                <span class="space-tag cyan-tag">Git</span>
               </div>
-              <p class="project-desc">This very website! A nostalgic Y2K-inspired interactive personal portfolio, CV host, and music player built with pure HTML, CSS, and vanilla JS.</p>
-              <div class="project-tech">
-                <span class="mini-tag">HTML</span>
-                <span class="mini-tag">CSS</span>
-                <span class="mini-tag">Git</span>
-                <span class="mini-tag">GitHub Pages</span>
-              </div>
-              <div class="project-actions">
-                <span class="status-badge live">● Active Project</span>
-              </div>
+              <div class="project-status live">● LIVE IN ORBIT</div>
             </div>
 
-            <!-- Project 2 Placeholder -->
-            <div class="project-card">
-              <div class="project-header">
-                <span class="project-icon">🎵</span>
-                <h4>Interactive DJ Set Library</h4>
+            <div class="project-box">
+              <div class="project-orbit-icon">📚</div>
+              <h4 class="project-title">Goodreads Database Engine</h4>
+              <p class="project-desc">A client-side query system that parses, filters, searches, and ranks 47+ books with star ratings and synopses with zero server overhead.</p>
+              <div class="space-tags">
+                <span class="space-tag magenta-tag">JavaScript</span>
+                <span class="space-tag magenta-tag">Async / Await</span>
+                <span class="space-tag magenta-tag">RSS API</span>
               </div>
-              <p class="project-desc">A dedicated web player and soundboard interface for streaming DJ sets with tracklists, timestamps, and genre filters.</p>
-              <div class="project-tech">
-                <span class="mini-tag">JavaScript</span>
-                <span class="mini-tag">Web Audio API</span>
-              </div>
-              <div class="project-actions">
-                <span class="status-badge wip">🛠️ In Development</span>
-              </div>
+              <div class="project-status live">● DEPLOYED</div>
             </div>
 
-            <!-- Project 3 Placeholder -->
-            <div class="project-card">
-              <div class="project-header">
-                <span class="project-icon">⚡</span>
-                <h4>Next Big Idea</h4>
+            <div class="project-box">
+              <div class="project-orbit-icon">🎛️</div>
+              <h4 class="project-title">Lunar Tunes Audio Deck</h4>
+              <p class="project-desc">A custom retro visualizer player for underground electronic DJ mixes, tracklists, and live recorded sets.</p>
+              <div class="space-tags">
+                <span class="space-tag lime-tag">Audio Player</span>
+                <span class="space-tag lime-tag">Web Sound</span>
               </div>
-              <p class="project-desc">Space reserved for upcoming apps, experiments, API integrations, and code explorations.</p>
-              <div class="project-tech">
-                <span class="mini-tag">Ideas</span>
-                <span class="mini-tag">WIP</span>
-              </div>
-              <div class="project-actions">
-                <span class="status-badge planned">💡 Planned</span>
-              </div>
+              <div class="project-status wip">🛠️ EXPANDING</div>
             </div>
           </div>
         </section>
 
-        <!-- TAB 4: DJ SETS -->
-        <section id="tab-dj-sets" class="tab-content">
-          <div class="section-header">
-            <h2>🎧 DJ Sets &amp; Mixes</h2>
-            <p class="subtitle">Press play and explore my latest mixes, track selections, and live sessions.</p>
+
+        <!-- ==================== SECTION 4: LUNAR TUNES (DJ SETS) ==================== -->
+        <section id="planet-audio" class="cosmic-section">
+          <div class="section-title-wrap">
+            <h2 class="space-glow-text">🎧 Lunar Tunes &bull; DJ Sets &amp; Sonic Transmissions</h2>
+            <p class="section-desc">Broadcasts of underground grooves, electro rhythms, and live recorded sessions.</p>
           </div>
 
-          <!-- Winamp-style Player Widget -->
-          <div class="winamp-player">
-            <div class="winamp-titlebar">
-              <span>💽 SIMON-AMP v2.0 - [DJ SET PLAYER]</span>
-              <span class="winamp-badge">STEREO 44.1kHz</span>
+          <!-- Space Winamp Player -->
+          <div class="lunar-player-console">
+            <div class="console-titlebar">
+              <span>💽 SIMON-AMP '96 &bull; LUNAR AUDIO DECK</span>
+              <span class="console-status-pill">STEREO 44.1kHz DIGITAL</span>
             </div>
-            
-            <div class="winamp-display">
-              <div class="track-info">
-                <span class="now-playing-label">NOW PLAYING:</span>
-                <span id="current-track-name" class="track-title">01. Simon - Late Night Grooves &amp; Electro Session</span>
+
+            <div class="console-lcd-screen">
+              <div class="lcd-track-details">
+                <span class="lcd-label">NOW BROADCASTING:</span>
+                <span class="lcd-track-title" id="current-track-name">01. Simon - Late Night Grooves &amp; Electro Session</span>
               </div>
-              <div class="lcd-bars" id="visualizer-bars">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="lcd-equalizer" id="visualizer-bars">
+                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
               </div>
             </div>
 
-            <div class="winamp-controls">
-              <button class="player-btn" id="prev-btn">⏮ PREV</button>
-              <button class="player-btn active-play" id="play-btn">▶ PLAY</button>
-              <button class="player-btn" id="pause-btn">⏸ PAUSE</button>
-              <button class="player-btn" id="next-btn">⏭ NEXT</button>
-              <div class="player-status" id="playback-status">STATUS: READY</div>
+            <div class="console-controls">
+              <button class="console-btn" id="prev-btn">⏮ PREV</button>
+              <button class="console-btn play-active" id="play-btn">▶ PLAY</button>
+              <button class="console-btn" id="pause-btn">⏸ PAUSE</button>
+              <button class="console-btn" id="next-btn">⏭ NEXT</button>
+              <div class="console-status-text" id="playback-status">STATUS: READY FOR TRANSMISSION</div>
             </div>
           </div>
 
-          <!-- Mix List -->
-          <div class="mix-list">
-            <h3 class="mix-list-title">🎶 Available Mixes &amp; Links</h3>
+          <!-- Tracklist / Mix Sessions -->
+          <div class="cosmic-card">
+            <h3 class="card-heading yellow-heading">🎶 AVAILABLE MIX SESSIONS</h3>
             
-            <div class="mix-item">
-              <div class="mix-meta">
+            <div class="mix-row">
+              <div class="mix-info">
                 <h4>1. Late Night Grooves &amp; Electro Session</h4>
                 <p>Genre: House / Electro / Breaks &bull; Duration: 60 mins</p>
               </div>
-              <div class="mix-links">
-                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">SoundCloud ↗</a>
-                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">Mixcloud ↗</a>
+              <div class="mix-buttons">
+                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">SoundCloud ↗</a>
+                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">Mixcloud ↗</a>
               </div>
             </div>
 
-            <div class="mix-item">
-              <div class="mix-meta">
+            <div class="mix-row">
+              <div class="mix-info">
                 <h4>2. Underground Vibes Volume 1</h4>
                 <p>Genre: Deep Techno / Minimal &bull; Duration: 45 mins</p>
               </div>
-              <div class="mix-links">
-                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">SoundCloud ↗</a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">YouTube ↗</a>
+              <div class="mix-buttons">
+                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">SoundCloud ↗</a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
               </div>
             </div>
 
-            <div class="mix-item">
-              <div class="mix-meta">
+            <div class="mix-row">
+              <div class="mix-info">
                 <h4>3. Summer Sunset Live Recording</h4>
                 <p>Genre: Melodic / Progressive &bull; Duration: 75 mins</p>
               </div>
-              <div class="mix-links">
-                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">Mixcloud ↗</a>
+              <div class="mix-buttons">
+                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">Mixcloud ↗</a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- TAB: BOOKSHELF & GOODREADS -->
-        <section id="tab-books" class="tab-content">
-          <div class="section-header">
+
+        <!-- ==================== SECTION 5: STELLAR BOOKSHELF (DATABASE-POWERED) ==================== -->
+        <section id="planet-books" class="cosmic-section">
+          <div class="section-title-wrap">
             <div>
-              <h2>📚 Simon's Bookshelf &amp; Reading Log</h2>
-              <p class="subtitle">Live sync from Goodreads &bull; History, Political Philosophy, Systems &amp; World Affairs</p>
+              <h2 class="space-glow-text">📚 Stellar Bookshelf &bull; Database Query Engine</h2>
+              <p class="section-desc">Loaded dynamically from <code>data/books.json</code> &bull; Synced with Simon's Goodreads Profile</p>
             </div>
-            <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="win-btn retro-action-btn">
-              📖 Open Goodreads Profile ↗
+            <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="retro-btn-space">
+              📖 OPEN GOODREADS PROFILE ↗
             </a>
           </div>
 
-          <!-- Goodreads Live Sync Status Banner -->
-          <div class="shelf-status-bar">
-            <span class="sync-dot">●</span> <strong>GOODREADS FEED:</strong> <span id="feed-status-text">Connected (ID: 163717021)</span>
-            <div class="shelf-filters">
-              <button class="shelf-filter-btn active" data-filter="all">All Books</button>
-              <button class="shelf-filter-btn" data-filter="currently-reading">📖 Currently Reading</button>
-              <button class="shelf-filter-btn" data-filter="read">✅ Read &amp; Rated</button>
+          <!-- Reading Statistics Bar -->
+          <div class="reading-stats-grid">
+            <div class="stat-card">
+              <span class="stat-val" id="stat-total-books">47</span>
+              <span class="stat-lbl">TOTAL IN DATABASE</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val" id="stat-reading-books">3</span>
+              <span class="stat-lbl">CURRENTLY READING</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val" id="stat-five-stars">12</span>
+              <span class="stat-lbl">5-STAR MASTERPIECES</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val">⭐ 4.3</span>
+              <span class="stat-lbl">AVG RATING</span>
             </div>
           </div>
 
-          <!-- Bookshelf Grid Container -->
-          <div class="bookshelf-grid" id="books-container">
+          <!-- Database Controls: Search & Filters -->
+          <div class="db-controls-box">
+            <div class="db-search-bar">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="book-search-input" class="db-search-input" placeholder="Search 47 books by title, author, or keyword (e.g. Fanon, Plato, Jobs, Toyota, 1984)..." />
+              <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
+            </div>
 
-            <!-- Currently Reading 1 -->
-            <article class="book-card" data-shelf="currently-reading">
-              <div class="book-cover-container">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327865541l/110331._SY160_.jpg" alt="The Federalist Papers" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
-                <span class="shelf-badge reading">📖 Reading</span>
+            <div class="db-filter-row">
+              <div class="shelf-pill-filters">
+                <button class="db-filter-pill active" data-filter="all">All Books (<span id="count-all">47</span>)</button>
+                <button class="db-filter-pill" data-filter="currently-reading">📖 Currently Reading (<span id="count-reading">3</span>)</button>
+                <button class="db-filter-pill" data-filter="five-stars">⭐ 5-Star Favorites</button>
+                <button class="db-filter-pill" data-filter="read">✅ Read &amp; Rated</button>
               </div>
-              <div class="book-details">
-                <h4 class="book-title">The Federalist Papers</h4>
-                <p class="book-author">by <strong>Alexander Hamilton, James Madison, John Jay</strong></p>
-                <div class="book-rating-box">
-                  <span class="rating-label">Status:</span>
-                  <span class="reading-progress">In Progress</span>
-                </div>
-                <p class="book-synopsis">A collection of 85 essays arguing for the ratification of the US Constitution and fundamental principles of governance.</p>
-                <a href="https://www.goodreads.com/book/show/110331.The_Federalist_Papers" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
-              </div>
-            </article>
 
-            <!-- Currently Reading 2 -->
-            <article class="book-card" data-shelf="currently-reading">
-              <div class="book-cover-container">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1415678006l/9462._SX98_.jpg" alt="Plato: Complete Works" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
-                <span class="shelf-badge reading">📖 Reading</span>
+              <div class="db-sort-wrapper">
+                <label for="book-sort-select">Sort By:</label>
+                <select id="book-sort-select" class="db-select">
+                  <option value="default">Default / Recent</option>
+                  <option value="rating-high">Highest Rated (5★ ➔ 1★)</option>
+                  <option value="title-az">Title (A ➔ Z)</option>
+                  <option value="year-desc">Publication Year (Newest)</option>
+                  <option value="year-asc">Publication Year (Oldest)</option>
+                </select>
               </div>
-              <div class="book-details">
-                <h4 class="book-title">Plato: Complete Works</h4>
-                <p class="book-author">by <strong>Plato (ed. John M. Cooper)</strong></p>
-                <div class="book-rating-box">
-                  <span class="rating-label">Status:</span>
-                  <span class="reading-progress">In Progress</span>
-                </div>
-                <p class="book-synopsis">The complete surviving corpus of dialogues and philosophical inquiries into justice, knowledge, reality, and politics.</p>
-                <a href="https://www.goodreads.com/book/show/9462.Complete_Works" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
-              </div>
-            </article>
+            </div>
+          </div>
 
-            <!-- Read & Reviewed 1 -->
-            <article class="book-card" data-shelf="read">
-              <div class="book-cover-container">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1704228247l/66933._SX98_.jpg" alt="The Wretched of the Earth" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
-                <span class="shelf-badge read">✅ Read</span>
-              </div>
-              <div class="book-details">
-                <h4 class="book-title">The Wretched of the Earth</h4>
-                <p class="book-author">by <strong>Frantz Fanon</strong></p>
-                <div class="book-rating-box">
-                  <span class="rating-label">Simon's Rating:</span>
-                  <span class="star-rating">★★★★★ <span class="rating-score">(5/5)</span></span>
-                </div>
-                <p class="book-synopsis">A seminal analysis of the psychology of colonization, revolutionary struggle, and the perils of post-independence politics.</p>
-                <a href="https://www.goodreads.com/book/show/66933.The_Wretched_of_the_Earth" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
-              </div>
-            </article>
+          <!-- Database Loading Indicator -->
+          <div id="db-loading-indicator" class="db-loading-state">
+            <span class="loading-spinner">🪐</span> Querying <code>data/books.json</code> database...
+          </div>
 
-            <!-- Read & Reviewed 2 -->
-            <article class="book-card" data-shelf="read">
-              <div class="book-cover-container">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1507452810l/5505708._SX98_.jpg" alt="The Story of the Integration of the Indian States" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
-                <span class="shelf-badge read">✅ Read</span>
-              </div>
-              <div class="book-details">
-                <h4 class="book-title">The Story of the Integration of the Indian States</h4>
-                <p class="book-author">by <strong>V.P. Menon</strong></p>
-                <div class="book-rating-box">
-                  <span class="rating-label">Simon's Rating:</span>
-                  <span class="star-rating">★★★☆☆ <span class="rating-score">(3/5)</span></span>
-                </div>
-                <p class="book-synopsis">First authoritative insider account of how 554 princely states were integrated into the Republic of India post-1947.</p>
-                <a href="https://www.goodreads.com/book/show/5505708-the-story-of-the-integration-of-the-indian-states" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
-              </div>
-            </article>
+          <!-- Results Counter -->
+          <div class="db-results-bar">
+            <span>Showing <strong id="results-count">47</strong> books matching query:</span>
+            <span class="db-sync-badge">● DB STATUS: READY (CLIENT QUERY ENGINE)</span>
+          </div>
 
+          <!-- Dynamic Book Shelf Grid Container -->
+          <div class="cosmic-bookshelf-grid" id="dynamic-books-container">
+            <!-- Populated on the fly via app.js -->
           </div>
         </section>
 
-        <!-- TAB 5: CONTACT & GUESTBOOK -->
-        <section id="tab-contact" class="tab-content">
-          <div class="section-header">
-            <h2>✉️ Contact &amp; Guestbook</h2>
-            <p class="subtitle">Leave a message or connect for collaborations, gigs, or code chat!</p>
+
+        <!-- ==================== SECTION 6: TRANSMISSION / CONTACT ==================== -->
+        <section id="planet-contact" class="cosmic-section">
+          <div class="section-title-wrap">
+            <h2 class="space-glow-text">📡 Transmission Hub &bull; Direct Frequencies</h2>
+            <p class="section-desc">Establish contact for collaborations, business digitalisation, DJ gigs, or tech discussions.</p>
           </div>
 
-          <div class="content-grid">
-            <div class="retro-card">
-              <h3>📬 Direct Channels</h3>
-              <p>Feel free to reach out directly for work, collaborations, gigs, or code chat:</p>
-              <ul class="contact-links">
-                <li>📧 <strong>Email:</strong> <a href="mailto:simon.nachtergaele@gmail.com">simon.nachtergaele@gmail.com</a></li>
-                <li>📱 <strong>Phone:</strong> <a href="tel:+32494753798">+32 494 75 37 98</a></li>
-                <li>💼 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/simon-nachtergaele/" target="_blank" rel="noopener noreferrer">linkedin.com/in/simon-nachtergaele</a></li>
-                <li>🐙 <strong>GitHub:</strong> <a href="https://github.com/simonn8" target="_blank" rel="noopener noreferrer">github.com/simonn8</a></li>
-                <li>🎧 <strong>DJ Bookings:</strong> Available for events, podcasts &amp; mixes</li>
+          <div class="cosmic-grid-2">
+            <div class="cosmic-card">
+              <h3 class="card-heading yellow-heading">📬 DIRECT CHANNELS</h3>
+              <p class="contact-intro">All subspace communications monitored regularly:</p>
+              
+              <ul class="space-contact-list">
+                <li>
+                  <span class="contact-icon">📧</span>
+                  <strong>Email:</strong>
+                  <a href="mailto:simon.nachtergaele@gmail.com" class="neon-link">simon.nachtergaele@gmail.com</a>
+                </li>
+                <li>
+                  <span class="contact-icon">📱</span>
+                  <strong>Phone:</strong>
+                  <a href="tel:+32494753798" class="neon-link">+32 494 75 37 98</a>
+                </li>
+                <li>
+                  <span class="contact-icon">💼</span>
+                  <strong>LinkedIn:</strong>
+                  <a href="https://linkedin.com/in/simon-nachtergaele/" target="_blank" rel="noopener noreferrer" class="neon-link">linkedin.com/in/simon-nachtergaele</a>
+                </li>
+                <li>
+                  <span class="contact-icon">🐙</span>
+                  <strong>GitHub:</strong>
+                  <a href="https://github.com/simonn8" target="_blank" rel="noopener noreferrer" class="neon-link">github.com/simonn8</a>
+                </li>
+                <li>
+                  <span class="contact-icon">📚</span>
+                  <strong>Goodreads:</strong>
+                  <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="neon-link">Goodreads Profile</a>
+                </li>
+                <li>
+                  <span class="contact-icon">🎧</span>
+                  <strong>DJ Bookings:</strong>
+                  <span>Available for events, podcasts &amp; live sessions</span>
+                </li>
               </ul>
             </div>
 
-            <div class="retro-card">
-              <h3>📝 Leave a Guestbook Note</h3>
-              <form id="guestbook-form" onsubmit="event.preventDefault(); alert('Thanks for signing my 2000s guestbook! 💾');">
-                <div class="form-group">
-                  <label for="gb-name">Your Name / Alias:</label>
-                  <input type="text" id="gb-name" class="retro-input" placeholder="e.g. CyberSurfer99" required />
+            <div class="cosmic-card">
+              <h3 class="card-heading yellow-heading">📝 LOG A SUB-SPACE TRANSMISSION</h3>
+              <form id="space-guestbook-form" onsubmit="event.preventDefault(); alert('🚀 Transmission Received! Thanks for signing Simon\'s Web Jam \'96 Guestbook!');">
+                <div class="form-field">
+                  <label for="gb-sender">Your Name / Space Call-Sign:</label>
+                  <input type="text" id="gb-sender" class="cosmic-input" placeholder="e.g. CaptainCyber96" required />
                 </div>
-                <div class="form-group">
-                  <label for="gb-msg">Message:</label>
-                  <textarea id="gb-msg" class="retro-textarea" rows="3" placeholder="Cool website! Keep it up..." required></textarea>
+                <div class="form-field">
+                  <label for="gb-text">Transmission Content:</label>
+                  <textarea id="gb-text" class="cosmic-textarea" rows="3" placeholder="Message content..." required></textarea>
                 </div>
-                <button type="submit" class="win-btn retro-submit-btn">💾 Sign Guestbook</button>
+                <button type="submit" class="retro-btn-space full-width">💾 TRANSMIT TO GUESTBOOK</button>
               </form>
             </div>
           </div>
@@ -522,36 +592,46 @@
       </div>
 
       <!-- Window Status Bar -->
-      <footer class="window-statusbar">
+      <footer class="cosmic-statusbar">
         <div class="status-left">
-          <span>● Ready</span>
+          <span>● ORBIT STABLE</span>
           <span class="divider">|</span>
-          <span>📁 /Users/snega/Documents/CV_website</span>
+          <span>🪐 SIMON'S WEB JAM '96</span>
+          <span class="divider">|</span>
+          <span>📊 47 BOOKS IN DB</span>
         </div>
         <div class="status-right">
           <span id="live-clock">12:00:00 PM</span>
         </div>
       </footer>
-    </main>
 
-    <!-- Retro Badges & Visitor Counter Footer -->
-    <aside class="retro-footer-widgets">
-      <div class="visitor-counter-box">
-        <span class="counter-label">YOU ARE VISITOR NO.</span>
-        <div class="counter-display" id="visitor-count">001337</div>
-      </div>
-
-      <div class="retro-badges">
-        <span class="retro-badge badge-html">HTML 5.0 VALID</span>
-        <span class="retro-badge badge-ie">BEST VIEWED IN NETSCAPE</span>
-        <span class="retro-badge badge-git">POWERED BY GIT</span>
-        <span class="retro-badge badge-y2k">Y2K COMPLIANT</span>
-      </div>
-    </aside>
+    </div>
 
   </div>
+
+
+  <!-- =========================================================================
+       3. 1996 RETRO FOOTER BADGES & VISITOR COUNTER
+       ========================================================================= -->
+  <footer class="space-footer">
+    <div class="space-visitor-counter">
+      <span class="counter-tag">TRANSMISSIONS RECEIVED:</span>
+      <div class="counter-odometer" id="visitor-count">001996</div>
+    </div>
+
+    <div class="space-retro-badges">
+      <span class="retro-badge badge-spacejam">SPACE JAM '96 THEME</span>
+      <span class="retro-badge badge-netscape">NETSCAPE READY</span>
+      <span class="retro-badge badge-db">JSON DATABASE ENGINE</span>
+      <span class="retro-badge badge-y2k">100% Y2K COMPLIANT</span>
+      <span class="retro-badge badge-git">POWERED BY GIT</span>
+    </div>
+
+    <p class="copyright-text">
+      &copy; 1996 - 2026 Simon Nachtergaele &bull; Built for Learning &amp; High-Flying Cosmic Fun 🚀
+    </p>
+  </footer>
 
   <script src="app.js"></script>
 </body>
 </html>
-

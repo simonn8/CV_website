@@ -1,28 +1,45 @@
-# 💾 Simon's 2000s Retro Web Portfolio & DJ Hub
+# 🌌 Simon's Web Jam '96 | Cosmic Portfolio, CV & Stellar Bookshelf Database
 
-A nostalgic Y2K/2000s personal website hosting my **CV**, **Projects**, and **DJ Sets**, built with pure HTML, CSS, and JavaScript.
+An authentic **1996 Space Jam website**-themed personal portfolio, CV showcase, underground DJ audio player, and **client-side database-driven digital library** with 47+ books synced with Goodreads.
 
 ---
 
-## 🌟 Features
+## 🪐 Theme: 1996 Space Jam Experience
 
-- **Windows 98/2000 Aesthetics**: Classic window chromes, 3D beveled borders, and nostalgic retro fonts.
-- **Top Marquee Banner**: Scrolling banner with 2000s flair.
-- **Tabbed Navigation**:
-  - 🏠 **About Me**: Bio, status, and quick stats.
-  - 📄 **CV & Skills**: Professional education, development journey, and skills list with a print button.
-  - 🚀 **Projects**: Living showcase of web experiments and code creations.
-  - 🎧 **DJ Sets**: Retro Winamp-style player with animated LCD visualizer bars & streaming links (SoundCloud, Mixcloud, YouTube).
-  - ✉️ **Contact & Guestbook**: Interactive guestbook and direct channels.
-- **Retro Extras**: Live status bar clock, visitor counter, and classic 88x31 web badges.
+- **Planetary Solar System Hub**: Central **SIMON'S WEB JAM '96** emblem with 6 interactive orbiting planets:
+  - 🪐 **Planet Bio**: Executive statement & background in Business Engineering & IT.
+  - 📋 **Planet CV**: Complete professional career, Sports & Leisure Group NV (€2M EBITDA supply chain), 24Flow, Sirris QRM Silver, and KU Leuven degrees.
+  - 🚀 **Jump Station**: Coding experiments, repositories, and learning milestones.
+  - 🎧 **Lunar Tunes**: Retro DJ audio deck with green LCD equalizer bars and underground electronic mix broadcasts.
+  - 📚 **Stellar Bookshelf**: Complete database-driven library with 47 books, star ratings, live search, and sorting.
+  - 📡 **Transmission Hub**: Direct frequencies (Email, Phone, LinkedIn, GitHub, Goodreads) and cosmic guestbook.
+- **Visuals**: Starfield particle cosmos, glowing neon planetary rings, vintage 90s cyber typography, and Netscape-ready badges.
+
+---
+
+## 📚 Database Architecture: `data/books.json`
+
+Instead of hardcoded HTML, all **47 books** from Simon's Goodreads profile are stored in a structured JSON database [`data/books.json`](file:///Users/snega/Documents/CV_website/data/books.json).
+
+### Database Engine Features:
+- 🔍 **Live Search Bar**: Search across 47 books by title, author, or synopsis keywords.
+- 🏷️ **Shelf Filters**:
+  - `All Books (47)`
+  - `📖 Currently Reading (3)` (*The Federalist Papers*, *Plato*, *The Intelligent Investor*)
+  - `⭐ 5-Star Hall of Fame (12)` (*Fanon*, *Humboldt*, *Malcolm X*, *Steinbeck*, *Frankenstein*, *Anna Karenina*, *1984*, *Steve Jobs*, etc.)
+  - `✅ Read & Rated (44)`
+- 🔽 **Sorting Options**:
+  - *Default / Recent*
+  - *Highest Rated (5★ ➔ 1★)*
+  - *Title (A ➔ Z)*
+  - *Publication Year (Newest / Oldest)*
+- 📊 **Reading Analytics Dashboard**: Dynamically computes total books, in-progress count, 5-star count, and average rating.
 
 ---
 
 ## 🚀 How to Run Locally
 
-You don't need any complex build tools (no `npm`, `node`, etc.)!
-
-1. Simply double-click [`index.html`](file:///Users/snega/Documents/CV_website/index.html) to open it directly in your browser.
+1. Simply open [`index.html`](file:///Users/snega/Documents/CV_website/index.html) in your browser.
 2. Or use Python's built-in web server:
    ```bash
    python3 -m http.server 8000
@@ -31,34 +48,13 @@ You don't need any complex build tools (no `npm`, `node`, etc.)!
 
 ---
 
-## 🛠️ Git & GitHub Workflow Guide
+## 🛠️ Update & Deploy Workflow
 
-### 1. Check what changed
-```bash
-git status
-```
-
-### 2. Stage your changes
+Whenever you make updates:
 ```bash
 git add .
-```
-
-### 3. Save a commit (snapshot)
-```bash
-git commit -m "Description of changes made"
-```
-
-### 4. Push to GitHub
-```bash
+git commit -m "Your update description"
 git push
 ```
-
----
-
-## 🌐 Publishing to GitHub Pages (Free Hosting)
-
-1. Create a new repository on [GitHub](https://github.com/new).
-2. Follow the instructions to push this local repository.
-3. In your GitHub repository: Go to **Settings** > **Pages** > Select `main` branch > Click **Save**.
-4. Your website will be live at: `https://<your-username>.github.io/<repo-name>/`!
-
+GitHub Pages automatically deploys your updates live at:
+👉 **[https://simonn8.github.io/CV_website/](https://simonn8.github.io/CV_website/)**
