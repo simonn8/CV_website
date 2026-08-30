@@ -4,729 +4,555 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Simon's Web Jam '96 | Space Portfolio, CV &amp; Stellar Bookshelf</title>
+  <title>Simon Nachtergaele — Engineering, Digitalisation &amp; Sound</title>
+  <meta name="description" content="Personal portfolio, supply chain engineering dossier, sound archives, and selected library of Simon Nachtergaele." />
+  
+  <!-- Fonts: Syne + Plus Jakarta Sans + Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪐</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◓</text></svg>" />
 </head>
-<body class="space-body">
+<body class="site-body">
 
-  <!-- Twinkling Starfield Background Layers -->
-  <div class="stars-layer stars-small"></div>
-  <div class="stars-layer stars-medium"></div>
-  <div class="stars-layer stars-large"></div>
+  <!-- Ambient Iridescent Aura Gradient Background (Ongehoord Palette) -->
+  <div class="aura-bg" aria-hidden="true">
+    <div class="aura-blob aura-1"></div>
+    <div class="aura-blob aura-2"></div>
+    <div class="aura-blob aura-3"></div>
+    <div class="aura-grain"></div>
+  </div>
 
-  <!-- Top 1996 Cosmic Marquee Banner -->
-  <header class="space-marquee-header">
-    <div class="space-marquee-track">
-      <span>🚀 WELCOME TO SIMON'S WEB JAM '96 &bull; BEST VIEWED WITH NETSCAPE NAVIGATOR &bull; SYSTEM THINKING, CV, DJ AUDIO &amp; 47-BOOK STELLAR LIBRARY &bull; TRANSMISSION LIVE FROM SECTOR 1996 🪐</span>
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <a href="#about" class="nav-brand">
+        <span class="brand-glyph">◓</span>
+        <span class="brand-name">SIMON NACHTERGAELE</span>
+      </a>
+
+      <nav class="nav-links" id="main-nav-links">
+        <a href="#about" class="nav-link active" data-section="about"><span class="nav-num">01</span> About</a>
+        <a href="#experience" class="nav-link" data-section="experience"><span class="nav-num">02</span> Experience</a>
+        <a href="#sound" class="nav-link" data-section="sound"><span class="nav-num">03</span> Sound</a>
+        <a href="#library" class="nav-link" data-section="library"><span class="nav-num">04</span> Library</a>
+        <a href="#contact" class="nav-link" data-section="contact"><span class="nav-num">05</span> Contact</a>
+      </nav>
+
+      <div class="nav-meta">
+        <span class="location-tag">GHENT, BE</span>
+        <span class="clock-display" id="local-clock">--:--:--</span>
+      </div>
     </div>
   </header>
 
-  <!-- =========================================================================
-       1. MAIN SCREEN: 1996 SPACE JAM SOLAR SYSTEM HUB
-       ========================================================================= -->
-  <div class="solar-hub-wrapper" id="solar-hub">
-    
-    <!-- Central Space Jam Logo Emblem -->
-    <div class="space-jam-logo-box">
-      <div class="logo-sparkle-top">✨</div>
-      <h1 class="space-jam-title">
-        <span class="title-sub">SIMON'S</span>
-        <span class="title-main">WEB JAM</span>
-        <span class="title-year">'96</span>
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="content-wrapper">
+
+    <!-- HERO / TITLE INTRO -->
+    <section class="hero-section" id="hero">
+      <div class="hero-header-row">
+        <div class="hero-tagline">
+          <span class="tag-pill">BUSINESS ENGINEERING</span>
+          <span class="tag-pill">DIGITALISATION</span>
+          <span class="tag-pill">ONGEHOORD</span>
+        </div>
+        <div class="hero-coords">51.0543° N, 3.7174° E</div>
+      </div>
+
+      <h1 class="hero-title">
+        SUPPLY CHAIN &bull; DATA &bull; SOUND &bull; ARCHIVE
       </h1>
-      <p class="space-jam-subtitle">★ THE ULTIMATE CYBER-PORTFOLIO IN ORBIT ★</p>
-    </div>
 
-    <!-- Planetary Orbit Navigation Menu -->
-    <nav class="planetary-system">
-      
-      <!-- Planet 1: Bio -->
-      <button class="planet-btn" data-target="planet-bio" title="Planet Bio">
-        <div class="planet-sphere planet-bio-sphere">
-          <span class="planet-icon">🪐</span>
-          <div class="planet-ring"></div>
+      <!-- Aura Statement Banner with Poster Artifacts -->
+      <div class="hero-aura-card">
+        <div class="aura-card-text">
+          <p class="hero-lead">
+            Bridging quantitative systems engineering, continuous flow operations, and digital architecture with underground electronic music curation and literature.
+          </p>
+          <div class="hero-status-row">
+            <span class="status-indicator">
+              <span class="status-dot"></span>
+              Supply Chain &amp; Digitalisation @ Sports &amp; Leisure Group
+            </span>
+            <span class="status-sub">Co-founder &amp; Resident @ Ongehoord</span>
+          </div>
         </div>
-        <span class="planet-label">PLANET BIO</span>
-      </button>
 
-      <!-- Planet 2: CV -->
-      <button class="planet-btn" data-target="planet-cv" title="Planet CV &amp; Skills">
-        <div class="planet-sphere planet-cv-sphere">
-          <span class="planet-icon">📋</span>
-          <div class="planet-ring"></div>
-        </div>
-        <span class="planet-label">PLANET CV</span>
-      </button>
-
-      <!-- Planet 3: Projects -->
-      <button class="planet-btn" data-target="planet-projects" title="Jump Station (Projects)">
-        <div class="planet-sphere planet-projects-sphere">
-          <span class="planet-icon">🚀</span>
-          <div class="planet-ring"></div>
-        </div>
-        <span class="planet-label">JUMP STATION</span>
-      </button>
-
-      <!-- Planet 4: DJ Sets -->
-      <button class="planet-btn" data-target="planet-audio" title="Lunar Tunes (DJ Mixes)">
-        <div class="planet-sphere planet-audio-sphere">
-          <span class="planet-icon">🎧</span>
-          <div class="planet-ring"></div>
-        </div>
-        <span class="planet-label">LUNAR TUNES</span>
-      </button>
-
-      <!-- Planet 5: Bookshelf -->
-      <button class="planet-btn" data-target="planet-books" title="Stellar Bookshelf (Database)">
-        <div class="planet-sphere planet-books-sphere">
-          <span class="planet-icon">📚</span>
-          <div class="planet-ring"></div>
-        </div>
-        <span class="planet-label">STELLAR BOOKS</span>
-      </button>
-
-      <!-- Planet 6: Transmission / Contact -->
-      <button class="planet-btn" data-target="planet-contact" title="Transmission Hub">
-        <div class="planet-sphere planet-contact-sphere">
-          <span class="planet-icon">📡</span>
-          <div class="planet-ring"></div>
-        </div>
-        <span class="planet-label">TRANSMISSION</span>
-      </button>
-
-    </nav>
-
-    <!-- Planetary Hub Quick Navigation Bar -->
-    <div class="hub-nav-text-links">
-      [ <a href="#bio" data-target="planet-bio">Bio</a> ] &bull;
-      [ <a href="#cv" data-target="planet-cv">CV</a> ] &bull;
-      [ <a href="#projects" data-target="planet-projects">Projects</a> ] &bull;
-      [ <a href="#audio" data-target="planet-audio">Lunar Tunes</a> ] &bull;
-      [ <a href="#books" data-target="planet-books">Bookshelf (DB)</a> ] &bull;
-      [ <a href="#contact" data-target="planet-contact">Transmission</a> ]
-    </div>
-
-  </div>
-
-
-  <!-- =========================================================================
-       2. PLANETARY SUB-WINDOWS (CONTENT PANELS)
-       ========================================================================= -->
-  <div class="content-overlay-container" id="content-container" style="display: none;">
-
-    <div class="cosmic-window">
-
-      <!-- Window Titlebar -->
-      <div class="cosmic-titlebar">
-        <div class="titlebar-left">
-          <button class="cosmic-back-btn" id="back-to-orbit-btn">
-            ⬅ RETURN TO SOLAR ORBIT
-          </button>
-          <span class="cosmic-window-title" id="active-panel-title">PLANET BIO</span>
-        </div>
-        <div class="titlebar-right">
-          <span class="coord-tag">SECTOR: 1996.SPACE</span>
-          <button class="cosmic-close-btn" id="close-modal-btn" title="Close Window">✕</button>
+        <div class="hero-poster-preview">
+          <img src="assets/ongehoord-poster.jpg" alt="Ongehoord Event Poster" class="poster-thumbnail" />
+          <span class="poster-caption">ONGEHOORD // BROEI, GHENT</span>
         </div>
       </div>
+    </section>
 
-      <!-- Quick Planet Bar on top of every section -->
-      <div class="quick-orbit-bar">
-        <button class="quick-orbit-btn" data-target="planet-bio">🪐 Bio</button>
-        <button class="quick-orbit-btn" data-target="planet-cv">📋 CV</button>
-        <button class="quick-orbit-btn" data-target="planet-projects">🚀 Projects</button>
-        <button class="quick-orbit-btn" data-target="planet-audio">🎧 DJ Audio</button>
-        <button class="quick-orbit-btn" data-target="planet-books">📚 Bookshelf (DB)</button>
-        <button class="quick-orbit-btn" data-target="planet-contact">📡 Transmission</button>
+
+    <!-- ==================== 01 / ABOUT & DOSSIER ==================== -->
+    <section class="page-section" id="about">
+      <div class="section-header">
+        <div class="section-badge">01 // DOSSIER</div>
+        <h2 class="section-heading">About &bull; Background</h2>
       </div>
 
-      <!-- Scrollable Window Content -->
-      <div class="cosmic-body">
+      <div class="editorial-grid-2">
+        <div class="editorial-block">
+          <h3 class="block-label">PROFILE</h3>
+          <p class="paragraph">
+            Master of Business Engineering with a specialization in Data Science from KU Leuven (Magna Cum Laude). My work operates at the intersection of supply chain synchronization, production systems, and digital platform design.
+          </p>
+          <p class="paragraph">
+            From coordinating €2M EBITDA unit operations to architecting real-time digital visibility hubs and MES integrations, I focus on eliminating friction, lead times, and communication silos across complex organizations.
+          </p>
+          <p class="paragraph">
+            Outside engineering, I curate underground electronic sessions across Belgium as co-founder of <strong>Ongehoord</strong> and guest selector on stations like <strong>Radio Ruit</strong> and <strong>Comala Radio</strong>.
+          </p>
+        </div>
 
-        <!-- ==================== SECTION 1: PLANET BIO ==================== -->
-        <section id="planet-bio" class="cosmic-section">
-          <div class="cosmic-hero-banner">
-            <div class="hero-avatar-space">
-              <div class="avatar-cosmic-glow">
-                <span class="avatar-emoji">🎧💼</span>
-              </div>
-              <div class="space-badge-status">● ORBITING EARTH &bull; STRATEGY &amp; IT</div>
-            </div>
-            <div class="hero-space-content">
-              <h2 class="space-glow-text">Simon Nachtergaele</h2>
-              <p class="space-tagline">Master of Business Engineering (Data Science) &bull; Supply Chain Digitalisation &bull; DJ / Sound Explorer</p>
-              
-              <div class="cosmic-highlight-box">
-                <h3 class="highlight-title">🌟 EXECUTIVE MISSION STATEMENT</h3>
-                <p>System thinker with a Master’s in Business Engineering and a proven track record of bridging business strategy and IT. Passionate about root-cause analysis, system design, low-code/automation ecosystems, and translating long-term strategy into measurable, short-term successes.</p>
-              </div>
-            </div>
+        <div class="editorial-block">
+          <h3 class="block-label">EDUCATION &amp; RECOGNITION</h3>
+          
+          <div class="timeline-item">
+            <div class="timeline-meta">2022 — 2024</div>
+            <div class="timeline-title">M.Sc. Business Engineering: Data Science</div>
+            <div class="timeline-sub">KU Leuven &bull; Magna Cum Laude</div>
           </div>
 
-          <div class="cosmic-grid-2">
-            <div class="cosmic-card">
-              <h3 class="card-heading">🛸 FLIGHT LOG &bull; SPECIALIZATIONS</h3>
-              <ul class="cosmic-bullet-list">
-                <li><strong>Supply Chain &amp; Digitalisation:</strong> Optimizing end-to-end flows, real-time inventory visibility, and CRM automation.</li>
-                <li><strong>System Thinking &amp; Change Management:</strong> QRM Silver methodology for high-variability manufacturing and lead time compression.</li>
-                <li><strong>Tech &amp; Data Stack:</strong> Python, Java, Salesforce, Looker Studio, Google Analytics, Bubble.io, N8N, HTML/CSS/JS.</li>
-                <li><strong>Underground Audio:</strong> Live DJ mixing, deep harmonic track curation, and electro/house sessions.</li>
-              </ul>
-            </div>
-
-            <div class="cosmic-card">
-              <h3 class="card-heading">🛰️ TELEMETRY &amp; VITALS</h3>
-              <table class="cosmic-table">
-                <tr><td><strong>Home Base:</strong></td><td>Belgium 🇧🇪 (Gent / Sint-Niklaas)</td></tr>
-                <tr><td><strong>Current Station:</strong></td><td>Supply Chain Planner &amp; Digitalisation @ Sports &amp; Leisure Group NV</td></tr>
-                <tr><td><strong>Education:</strong></td><td>M.Sc. Business Engineering (Data Science) - KU Leuven</td></tr>
-                <tr><td><strong>Certification:</strong></td><td>Sirris QRM Silver (2025) 🏅</td></tr>
-                <tr><td><strong>Languages:</strong></td><td>Dutch (Native), English (Fluent), French, Spanish</td></tr>
-                <tr><td><strong>Direct Frequency:</strong></td><td><a href="mailto:simon.nachtergaele@gmail.com" class="neon-link">simon.nachtergaele@gmail.com</a></td></tr>
-              </table>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 2: PLANET CV ==================== -->
-        <section id="planet-cv" class="cosmic-section">
-          <div class="section-title-wrap">
-            <h2 class="space-glow-text">📋 Curriculum Vitae &bull; Simon Nachtergaele</h2>
-            <button class="retro-btn-space" onclick="window.print()">🖨️ PRINT MISSION DOSSIER</button>
+          <div class="timeline-item">
+            <div class="timeline-meta">2023</div>
+            <div class="timeline-title">Academic Exchange — Business &amp; Analytics</div>
+            <div class="timeline-sub">IMT Business School &bull; Paris, France</div>
           </div>
 
-          <!-- Professional Experience -->
-          <div class="cosmic-card mb-20">
-            <h3 class="card-heading yellow-heading">💼 PROFESSIONAL EXPERIENCE</h3>
-
-            <div class="timeline-entry">
-              <div class="timeline-top">
-                <span class="company-name">Sports &amp; Leisure Group NV &bull; Sint-Niklaas, Belgium</span>
-                <span class="timeline-badge">2025 - Present</span>
-              </div>
-              <div class="role-title">Supply Chain Planner &amp; Digitalisation</div>
-              <ul class="cosmic-bullet-list">
-                <li>Managed the end-to-end supply chain of the Leisure business unit with an EBITDA of <strong>€2M</strong>, giving me a holistic view of how sales, finance, production, and logistics tie together.</li>
-                <li>Reduced email traffic by <strong>40-60%</strong> by introducing a real-time stock visibility platform. The subsidiaries placed orders on the platform, connecting sales and inventory seamlessly.</li>
-                <li>Automated sales follow-up with clients by introducing <strong>Pipedrive</strong>, a lightweight CRM.</li>
-                <li>Established clear procedures for order intake and complaints in order to prepare future digitalisation efforts.</li>
-              </ul>
-            </div>
-
-            <div class="timeline-entry mt-15">
-              <div class="timeline-top">
-                <span class="company-name">24Flow &bull; Gent, Belgium</span>
-                <span class="timeline-badge">2024 - 2025</span>
-              </div>
-              <div class="role-title">Solution Engineer</div>
-              <ul class="cosmic-bullet-list">
-                <li>End-to-end implementation of 24Flow’s MES software across multiple projects, from initial analysis to delivery.</li>
-                <li>Built solutions on the <strong>Salesforce platform</strong>, which provided deep hands-on expertise in the enterprise low-code ecosystem.</li>
-                <li>Delivered live demos to prospective clients that effectively showcased the measurable benefits of the solution.</li>
-              </ul>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-meta">2019 — 2022</div>
+            <div class="timeline-title">B.Sc. Business Engineering</div>
+            <div class="timeline-sub">KU Leuven &bull; Cum Laude</div>
           </div>
 
-          <!-- Certifications -->
-          <div class="cosmic-card mb-20">
-            <h3 class="card-heading yellow-heading">🏅 CERTIFICATIONS</h3>
-            <div class="timeline-entry">
-              <div class="timeline-top">
-                <span class="company-name">Sirris &bull; Gent, Belgium</span>
-                <span class="timeline-badge">2025</span>
-              </div>
-              <div class="role-title">QRM Silver (Quick Response Manufacturing)</div>
-              <p class="entry-desc">System thinking and change management methodology similar to Lean and Six Sigma, with a focus on reducing global lead times in high-variability environments.</p>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-meta">2021</div>
+            <div class="timeline-title">International Study Exchange</div>
+            <div class="timeline-sub">Universidad de Granada &bull; Spain</div>
           </div>
 
-          <!-- Education -->
-          <div class="cosmic-card mb-20">
-            <h3 class="card-heading yellow-heading">🎓 EDUCATION &amp; ACADEMICS</h3>
-
-            <div class="timeline-entry">
-              <div class="timeline-top">
-                <span class="company-name">Katholieke Universiteit Leuven &bull; Leuven, Belgium</span>
-                <span class="timeline-badge">2022 - 2024</span>
-              </div>
-              <div class="role-title">Master of Business Engineering (Major in Data Science)</div>
-            </div>
-
-            <div class="timeline-entry mt-10">
-              <div class="timeline-top">
-                <span class="company-name">Institut Mines-Télécom Business School &bull; Paris, France</span>
-                <span class="timeline-badge">2023</span>
-              </div>
-              <div class="role-title">Exchange Semester</div>
-              <p class="entry-desc">Data Analytics course: built analytics dashboards with Google Analytics &amp; Looker Studio.</p>
-            </div>
-
-            <div class="timeline-entry mt-10">
-              <div class="timeline-top">
-                <span class="company-name">Katholieke Universiteit Leuven &bull; Leuven, Belgium</span>
-                <span class="timeline-badge">2019 - 2022</span>
-              </div>
-              <div class="role-title">Bachelor of Business Engineering</div>
-            </div>
-
-            <div class="timeline-entry mt-10">
-              <div class="timeline-top">
-                <span class="company-name">Universidad de Granada &bull; Granada, Spain</span>
-                <span class="timeline-badge">2021</span>
-              </div>
-              <div class="role-title">Exchange Semester</div>
-              <p class="entry-desc">Completed 4 out of 5 courses in Spanish.</p>
-            </div>
+          <div class="timeline-item highlight">
+            <div class="timeline-meta">2025</div>
+            <div class="timeline-title">Sirris QRM Silver Certification</div>
+            <div class="timeline-sub">Quick Response Manufacturing &bull; Lead Time Reduction</div>
           </div>
-
-          <!-- Skills Badges Grid -->
-          <div class="cosmic-card">
-            <h3 class="card-heading yellow-heading">⚡ SKILLS &amp; ARSENAL</h3>
-            <div class="skills-grid">
-              <div class="skill-group">
-                <h4>💻 Systems &amp; Programming</h4>
-                <div class="space-tags">
-                  <span class="space-tag cyan-tag">Salesforce</span>
-                  <span class="space-tag cyan-tag">System Design</span>
-                  <span class="space-tag cyan-tag">Python</span>
-                  <span class="space-tag cyan-tag">Java</span>
-                  <span class="space-tag cyan-tag">Data Science</span>
-                  <span class="space-tag cyan-tag">Looker Studio</span>
-                  <span class="space-tag cyan-tag">Google Analytics</span>
-                  <span class="space-tag cyan-tag">HTML / CSS / JS</span>
-                  <span class="space-tag cyan-tag">Git &amp; GitHub</span>
-                </div>
-              </div>
-
-              <div class="skill-group">
-                <h4>🛠️ CRM, Automation &amp; No-Code</h4>
-                <div class="space-tags">
-                  <span class="space-tag magenta-tag">Pipedrive</span>
-                  <span class="space-tag magenta-tag">Salesforce CRM</span>
-                  <span class="space-tag magenta-tag">Bubble.io</span>
-                  <span class="space-tag magenta-tag">N8N</span>
-                  <span class="space-tag magenta-tag">MES Software</span>
-                  <span class="space-tag magenta-tag">Supply Chain Workflows</span>
-                </div>
-              </div>
-
-              <div class="skill-group">
-                <h4>🌍 Languages</h4>
-                <div class="space-tags">
-                  <span class="space-tag lime-tag">Dutch (Native)</span>
-                  <span class="space-tag lime-tag">English (Full Professional)</span>
-                  <span class="space-tag lime-tag">French (Professional Working)</span>
-                  <span class="space-tag lime-tag">Spanish (Limited Working)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
 
-        <!-- ==================== SECTION 3: JUMP STATION (PROJECTS) ==================== -->
-        <section id="planet-projects" class="cosmic-section">
-          <div class="section-title-wrap">
-            <h2 class="space-glow-text">🚀 Jump Station &bull; Creations &amp; Experiments</h2>
-            <p class="section-desc">A launching pad for software, tools, and web explorations.</p>
-          </div>
+    <!-- ==================== 02 / EXPERIENCE & SYSTEMS ==================== -->
+    <section class="page-section" id="experience">
+      <div class="section-header">
+        <div class="section-badge">02 // OPERATIONS &amp; SYSTEMS</div>
+        <h2 class="section-heading">Professional Experience</h2>
+      </div>
 
-          <div class="cosmic-grid-3">
-            <div class="project-box">
-              <div class="project-orbit-icon">🌌</div>
-              <h4 class="project-title">1996 Space Jam Web Portal</h4>
-              <p class="project-desc">This very website! A retro Web 1.0 interplanetary portfolio, featuring an asynchronous JSON database engine, dynamic audio deck, and responsive celestial design.</p>
-              <div class="space-tags">
-                <span class="space-tag cyan-tag">HTML5</span>
-                <span class="space-tag cyan-tag">CSS3</span>
-                <span class="space-tag cyan-tag">JSON DB</span>
-                <span class="space-tag cyan-tag">Git</span>
-              </div>
-              <div class="project-status live">● LIVE IN ORBIT</div>
-            </div>
-
-            <div class="project-box">
-              <div class="project-orbit-icon">📚</div>
-              <h4 class="project-title">Goodreads Database Engine</h4>
-              <p class="project-desc">A client-side query system that parses, filters, searches, and ranks 47+ books with star ratings and synopses with zero server overhead.</p>
-              <div class="space-tags">
-                <span class="space-tag magenta-tag">JavaScript</span>
-                <span class="space-tag magenta-tag">Async / Await</span>
-                <span class="space-tag magenta-tag">RSS API</span>
-              </div>
-              <div class="project-status live">● DEPLOYED</div>
-            </div>
-
-            <div class="project-box">
-              <div class="project-orbit-icon">🎛️</div>
-              <h4 class="project-title">Lunar Tunes Audio Deck</h4>
-              <p class="project-desc">A custom retro visualizer player for underground electronic DJ mixes, tracklists, and live recorded sets.</p>
-              <div class="space-tags">
-                <span class="space-tag lime-tag">Audio Player</span>
-                <span class="space-tag lime-tag">Web Sound</span>
-              </div>
-              <div class="project-status wip">🛠️ EXPANDING</div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 4: LUNAR TUNES (DJ SETS) ==================== -->
-        <section id="planet-audio" class="cosmic-section">
-          <div class="section-title-wrap">
+      <div class="experience-list">
+        
+        <!-- Role 1: Sports & Leisure Group -->
+        <article class="experience-card">
+          <div class="exp-header">
             <div>
-              <h2 class="space-glow-text">🎧 Lunar Tunes &bull; Live DJ Sets &amp; Broadcasts</h2>
-              <p class="section-desc">Recorded live sessions from Radio Ruit, Comala Radio, and YAMI RECORDS &bull; Autoplaying in Orbit</p>
+              <span class="exp-period">2025 — PRESENT &bull; SINT-NIKLAAS, BELGIUM</span>
+              <h3 class="exp-title">Supply Chain Planner &amp; Digitalisation</h3>
+              <div class="exp-company">Sports &amp; Leisure Group NV</div>
             </div>
-            <a href="https://www.youtube.com/@radioruit" target="_blank" rel="noopener noreferrer" class="retro-btn-space">
-              📺 RADIO RUIT CHANNEL ↗
-            </a>
+            <span class="exp-tag">CURRENT ROLE</span>
           </div>
+          
+          <p class="exp-desc">
+            Responsible for end-to-end supply chain orchestration for the €2M EBITDA leisure turf business unit. Spearheaded cross-departmental digitalisation initiatives to streamline operations and enhance transparency.
+          </p>
 
-          <!-- Space CRT Broadcast Monitor & Winamp Console -->
-          <div class="lunar-player-console">
-            <div class="console-titlebar">
-              <span>💽 SIMON-AMP '96 &bull; LUNAR VIDEO &amp; AUDIO BROADCASTER</span>
-              <span class="console-status-pill" id="live-broadcast-pill">● LIVE ON AIR</span>
-            </div>
+          <ul class="exp-bullets">
+            <li>
+              <strong>Real-Time Stock Visibility Platform:</strong> Designed and deployed an automated inventory dashboard reducing customer-inquiry email volume by 40–60%.
+            </li>
+            <li>
+              <strong>Pipedrive CRM Automation:</strong> Structured sales pipeline architecture, customer lifecycle stages, and lead qualification workflows.
+            </li>
+            <li>
+              <strong>Production &amp; Inventory Planning:</strong> Balanced capacity constraints, warehouse utilization, and supplier lead times across European distribution channels.
+            </li>
+          </ul>
 
-            <!-- Embedded Video / Audio Screen -->
-            <div class="crt-monitor-frame">
-              <div class="crt-screen-overlay"></div>
-              <div id="youtube-embed-wrapper" class="youtube-embed-wrapper">
-                <div id="youtube-player"></div>
-                <iframe 
-                  id="main-youtube-iframe"
-                  src="https://www.youtube-nocookie.com/embed/MvYE8fAfuH4?autoplay=1&enablejsapi=1&playsinline=1"
-                  title="Simon Nachtergaele DJ Set"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen>
-                </iframe>
-              </div>
-            </div>
-
-            <div class="console-lcd-screen">
-              <div class="lcd-track-details">
-                <span class="lcd-label">NOW BROADCASTING:</span>
-                <span class="lcd-track-title" id="current-track-name">1. Ongehoord Collective | YAMI RECORDS (103)</span>
-              </div>
-              <div class="lcd-equalizer" id="visualizer-bars">
-                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-              </div>
-            </div>
-
-            <div class="console-controls">
-              <button class="console-btn" id="prev-btn">⏮ PREV SET</button>
-              <button class="console-btn play-active" id="play-btn">▶ PLAY / UNMUTE</button>
-              <button class="console-btn" id="pause-btn">⏸ PAUSE</button>
-              <button class="console-btn" id="next-btn">⏭ NEXT SET</button>
-              <div class="console-status-text" id="playback-status">STATUS: READY TO BROADCAST 🎵</div>
-            </div>
+          <div class="skills-chips">
+            <span>Supply Chain Planning</span>
+            <span>QRM</span>
+            <span>Pipedrive</span>
+            <span>Process Automation</span>
+            <span>Data Analytics</span>
+            <span>Looker Studio</span>
           </div>
+        </article>
 
-          <!-- All 5 Real DJ Sets Grid -->
-          <div class="cosmic-card">
-            <h3 class="card-heading yellow-heading">🎶 COMPLETE DJ SESSIONS &amp; RECORDINGS (5 SETS)</h3>
-            <p class="section-desc mb-15">Click any session below to switch the player broadcast instantly:</p>
-
-            <div class="dj-sets-list" id="dj-sets-container">
-
-              <!-- Set 1 (Latest) -->
-              <div class="mix-row active-mix" data-set-index="0" data-video-id="MvYE8fAfuH4">
-                <div class="mix-thumb-box">
-                  <img src="https://i.ytimg.com/vi/MvYE8fAfuH4/hqdefault.jpg" alt="Ongehoord Collective | YAMI RECORDS (103)" class="mix-thumb" />
-                  <span class="mix-badge latest">● LATEST SET</span>
-                </div>
-                <div class="mix-info">
-                  <h4>1. Ongehoord Collective | YAMI RECORDS (103)</h4>
-                  <p>Channel: <strong>YAMI RECORDS</strong> &bull; Curated Underground Selection</p>
-                </div>
-                <div class="mix-buttons">
-                  <button class="retro-btn-space sm play-track-btn" data-video-id="MvYE8fAfuH4" data-index="0">▶ Play Here</button>
-                  <a href="https://youtu.be/MvYE8fAfuH4" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-                </div>
-              </div>
-
-              <!-- Set 2 -->
-              <div class="mix-row" data-set-index="1" data-video-id="keA0EYOCnQM">
-                <div class="mix-thumb-box">
-                  <img src="https://i.ytimg.com/vi/keA0EYOCnQM/hqdefault.jpg" alt="Simon Nachtergaele @comalaradio" class="mix-thumb" />
-                  <span class="mix-badge">05.08.26</span>
-                </div>
-                <div class="mix-info">
-                  <h4>2. Simon Nachtergaele @comalaradio</h4>
-                  <p>Channel: <strong>Comala Radio</strong> &bull; Recorded 05.08.2026</p>
-                </div>
-                <div class="mix-buttons">
-                  <button class="retro-btn-space sm play-track-btn" data-video-id="keA0EYOCnQM" data-index="1">▶ Play Here</button>
-                  <a href="https://youtu.be/keA0EYOCnQM" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-                </div>
-              </div>
-
-              <!-- Set 3 -->
-              <div class="mix-row" data-set-index="2" data-video-id="MEuUfsyMybs">
-                <div class="mix-thumb-box">
-                  <img src="https://i.ytimg.com/vi/MEuUfsyMybs/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 06.02.2026" class="mix-thumb" />
-                  <span class="mix-badge">06.02.26</span>
-                </div>
-                <div class="mix-info">
-                  <h4>3. Simon Nachtergaele live at Radio Ruit</h4>
-                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 06.02.2026 &bull; Deep Grooves</p>
-                </div>
-                <div class="mix-buttons">
-                  <button class="retro-btn-space sm play-track-btn" data-video-id="MEuUfsyMybs" data-index="2">▶ Play Here</button>
-                  <a href="https://youtu.be/MEuUfsyMybs" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-                </div>
-              </div>
-
-              <!-- Set 4 -->
-              <div class="mix-row" data-set-index="3" data-video-id="LXlFbAsZi4A">
-                <div class="mix-thumb-box">
-                  <img src="https://i.ytimg.com/vi/LXlFbAsZi4A/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 24.10.25" class="mix-thumb" />
-                  <span class="mix-badge">24.10.25</span>
-                </div>
-                <div class="mix-info">
-                  <h4>4. Simon Nachtergaele live at Radio Ruit</h4>
-                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 24.10.2025 &bull; Electro &amp; Breaks</p>
-                </div>
-                <div class="mix-buttons">
-                  <button class="retro-btn-space sm play-track-btn" data-video-id="LXlFbAsZi4A" data-index="3">▶ Play Here</button>
-                  <a href="https://youtu.be/LXlFbAsZi4A" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-                </div>
-              </div>
-
-              <!-- Set 5 -->
-              <div class="mix-row" data-set-index="4" data-video-id="sieDJ4si6RU">
-                <div class="mix-thumb-box">
-                  <img src="https://i.ytimg.com/vi/sieDJ4si6RU/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 13.06.25" class="mix-thumb" />
-                  <span class="mix-badge">13.06.25</span>
-                </div>
-                <div class="mix-info">
-                  <h4>5. Simon Nachtergaele live at Radio Ruit</h4>
-                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 13.06.2025 &bull; Summer Session</p>
-                </div>
-                <div class="mix-buttons">
-                  <button class="retro-btn-space sm play-track-btn" data-video-id="sieDJ4si6RU" data-index="4">▶ Play Here</button>
-                  <a href="https://youtu.be/sieDJ4si6RU" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 5: STELLAR BOOKSHELF (DATABASE-POWERED) ==================== -->
-        <section id="planet-books" class="cosmic-section">
-          <div class="section-title-wrap">
+        <!-- Role 2: 24Flow -->
+        <article class="experience-card">
+          <div class="exp-header">
             <div>
-              <h2 class="space-glow-text">📚 Stellar Bookshelf &bull; Database Query Engine</h2>
-              <p class="section-desc">Loaded dynamically from <code>data/books.json</code> &bull; Synced with Simon's Goodreads Profile</p>
+              <span class="exp-period">2024 — 2025 &bull; GHENT, BELGIUM</span>
+              <h3 class="exp-title">Solution Engineer</h3>
+              <div class="exp-company">24Flow</div>
             </div>
-            <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="retro-btn-space">
-              📖 OPEN GOODREADS PROFILE ↗
-            </a>
+            <span class="exp-tag">OPERATIONS / TECH</span>
           </div>
+          
+          <p class="exp-desc">
+            Implemented cloud-native Manufacturing Execution System (MES) software based on Quick Response Manufacturing (QRM) principles for high-mix, low-volume manufacturing environments.
+          </p>
 
-          <!-- Reading Statistics Bar -->
-          <div class="reading-stats-grid">
-            <div class="stat-card">
-              <span class="stat-val" id="stat-total-books">47</span>
-              <span class="stat-lbl">TOTAL IN DATABASE</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-val" id="stat-reading-books">3</span>
-              <span class="stat-lbl">CURRENTLY READING</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-val" id="stat-five-stars">12</span>
-              <span class="stat-lbl">5-STAR MASTERPIECES</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-val">⭐ 4.3</span>
-              <span class="stat-lbl">AVG RATING</span>
-            </div>
+          <ul class="exp-bullets">
+            <li>
+              <strong>System Architecture:</strong> Designed custom data models, visual shop-floor dispatch boards, and scheduling logic on Salesforce platform.
+            </li>
+            <li>
+              <strong>Client Engagements:</strong> Conducted operations audits, mapped Value Streams, and configured end-to-end production tracking modules.
+            </li>
+          </ul>
+
+          <div class="skills-chips">
+            <span>MES Software</span>
+            <span>Salesforce</span>
+            <span>System Design</span>
+            <span>Value Stream Mapping</span>
+            <span>Lean / QRM</span>
           </div>
-
-          <!-- Database Controls: Search & Filters -->
-          <div class="db-controls-box">
-            <div class="db-search-bar">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="book-search-input" class="db-search-input" placeholder="Search 47 books by title, author, or keyword (e.g. Fanon, Plato, Jobs, Toyota, 1984)..." />
-              <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
-            </div>
-
-            <div class="db-filter-row">
-              <div class="shelf-pill-filters">
-                <button class="db-filter-pill active" data-filter="all">All Books (<span id="count-all">47</span>)</button>
-                <button class="db-filter-pill" data-filter="currently-reading">📖 Currently Reading (<span id="count-reading">3</span>)</button>
-                <button class="db-filter-pill" data-filter="five-stars">⭐ 5-Star Favorites</button>
-                <button class="db-filter-pill" data-filter="read">✅ Read &amp; Rated</button>
-              </div>
-
-              <div class="db-sort-wrapper">
-                <label for="book-sort-select">Sort By:</label>
-                <select id="book-sort-select" class="db-select">
-                  <option value="default">Default / Recent</option>
-                  <option value="rating-high">Highest Rated (5★ ➔ 1★)</option>
-                  <option value="title-az">Title (A ➔ Z)</option>
-                  <option value="year-desc">Publication Year (Newest)</option>
-                  <option value="year-asc">Publication Year (Oldest)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Database Loading Indicator -->
-          <div id="db-loading-indicator" class="db-loading-state">
-            <span class="loading-spinner">🪐</span> Querying <code>data/books.json</code> database...
-          </div>
-
-          <!-- Results Counter & Live Sync -->
-          <div class="db-results-bar">
-            <span>Showing <strong id="results-count">47</strong> books matching query:</span>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button id="sync-goodreads-btn" class="retro-btn-space sm" title="Pull latest reviews from Goodreads RSS">🔄 Sync Goodreads</button>
-              <span class="db-sync-badge" id="db-sync-status-badge">● DB STATUS: 47 BOOKS READY</span>
-            </div>
-          </div>
-
-          <!-- Dynamic Book Shelf Grid Container -->
-          <div class="cosmic-bookshelf-grid" id="dynamic-books-container">
-            <!-- Populated on the fly via app.js -->
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 6: TRANSMISSION / CONTACT ==================== -->
-        <section id="planet-contact" class="cosmic-section">
-          <div class="section-title-wrap">
-            <h2 class="space-glow-text">📡 Transmission Hub &bull; Direct Frequencies</h2>
-            <p class="section-desc">Establish contact for collaborations, business digitalisation, DJ gigs, or tech discussions.</p>
-          </div>
-
-          <div class="cosmic-grid-2">
-            <div class="cosmic-card">
-              <h3 class="card-heading yellow-heading">📬 DIRECT CHANNELS</h3>
-              <p class="contact-intro">All subspace communications monitored regularly:</p>
-              
-              <ul class="space-contact-list">
-                <li>
-                  <span class="contact-icon">📧</span>
-                  <strong>Email:</strong>
-                  <a href="mailto:simon.nachtergaele@gmail.com" class="neon-link">simon.nachtergaele@gmail.com</a>
-                </li>
-                <li>
-                  <span class="contact-icon">📱</span>
-                  <strong>Phone:</strong>
-                  <a href="tel:+32494753798" class="neon-link">+32 494 75 37 98</a>
-                </li>
-                <li>
-                  <span class="contact-icon">💼</span>
-                  <strong>LinkedIn:</strong>
-                  <a href="https://linkedin.com/in/simon-nachtergaele/" target="_blank" rel="noopener noreferrer" class="neon-link">linkedin.com/in/simon-nachtergaele</a>
-                </li>
-                <li>
-                  <span class="contact-icon">🐙</span>
-                  <strong>GitHub:</strong>
-                  <a href="https://github.com/simonn8" target="_blank" rel="noopener noreferrer" class="neon-link">github.com/simonn8</a>
-                </li>
-                <li>
-                  <span class="contact-icon">📚</span>
-                  <strong>Goodreads:</strong>
-                  <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="neon-link">Goodreads Profile</a>
-                </li>
-                <li>
-                  <span class="contact-icon">🎧</span>
-                  <strong>DJ Bookings:</strong>
-                  <span>Available for events, podcasts &amp; live sessions</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="cosmic-card">
-              <h3 class="card-heading yellow-heading">📝 LOG A SUB-SPACE TRANSMISSION</h3>
-              <form id="space-guestbook-form" onsubmit="event.preventDefault(); alert('🚀 Transmission Received! Thanks for signing Simon\'s Web Jam \'96 Guestbook!');">
-                <div class="form-field">
-                  <label for="gb-sender">Your Name / Space Call-Sign:</label>
-                  <input type="text" id="gb-sender" class="cosmic-input" placeholder="e.g. CaptainCyber96" required />
-                </div>
-                <div class="form-field">
-                  <label for="gb-text">Transmission Content:</label>
-                  <textarea id="gb-text" class="cosmic-textarea" rows="3" placeholder="Message content..." required></textarea>
-                </div>
-                <button type="submit" class="retro-btn-space full-width">💾 TRANSMIT TO GUESTBOOK</button>
-              </form>
-            </div>
-          </div>
-        </section>
+        </article>
 
       </div>
 
-      <!-- Window Status Bar -->
-      <footer class="cosmic-statusbar">
-        <div class="status-left">
-          <span>● ORBIT STABLE</span>
-          <span class="divider">|</span>
-          <span>🪐 SIMON'S WEB JAM '96</span>
-          <span class="divider">|</span>
-          <span>📊 47 BOOKS IN DB</span>
+      <!-- Competencies Matrix -->
+      <div class="matrix-box">
+        <h3 class="matrix-title">CORE COMPETENCIES &amp; TOOLS</h3>
+        <div class="matrix-grid">
+          <div class="matrix-col">
+            <span class="matrix-label">OPERATIONS &amp; METHODS</span>
+            <p>Quick Response Manufacturing (QRM), Value Stream Mapping, Lead Time Reduction, Production Planning, Capacity Balancing, Supply Chain Design.</p>
+          </div>
+          <div class="matrix-col">
+            <span class="matrix-label">PLATFORMS &amp; SYSTEMS</span>
+            <p>Salesforce, MES Architecture, Pipedrive CRM, N8N, Bubble.io, Looker Studio, Google Analytics, Git.</p>
+          </div>
+          <div class="matrix-col">
+            <span class="matrix-label">DATA &amp; DEVELOPMENT</span>
+            <p>Python, Java, SQL, Data Modeling, Statistical Analysis, Modern Web Standards (HTML5 / CSS / JavaScript).</p>
+          </div>
+          <div class="matrix-col">
+            <span class="matrix-label">LANGUAGES</span>
+            <p>Dutch (Native), English (Full Professional), French (Professional Working), Spanish (Limited Working).</p>
+          </div>
         </div>
-        <div class="status-right">
-          <span id="live-clock">12:00:00 PM</span>
+      </div>
+    </section>
+
+
+    <!-- ==================== 03 / SOUND & BROADCASTS ==================== -->
+    <section class="page-section" id="sound">
+      <div class="section-header">
+        <div class="section-badge">03 // SOUND &amp; CURATION</div>
+        <div class="header-split">
+          <h2 class="section-heading">Broadcasts &bull; Selected Sets</h2>
+          <div class="live-broadcast-tag">
+            <span class="pulse-light"></span>
+            AUDIO STREAM ACTIVE
+          </div>
         </div>
-      </footer>
+      </div>
 
+      <!-- Horst-Inspired Audio Visualizer Deck & Video Embed -->
+      <div class="sound-deck-container">
+        
+        <!-- Video Screen Container -->
+        <div class="video-screen-wrapper">
+          <div id="youtube-player"></div>
+          <iframe 
+            id="main-youtube-iframe"
+            src="https://www.youtube-nocookie.com/embed/MvYE8fAfuH4?autoplay=1&enablejsapi=1&playsinline=1"
+            title="Simon Nachtergaele DJ Set"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- Integrated Player Bar -->
+        <div class="deck-control-bar">
+          <div class="deck-left">
+            <span class="deck-label">CURRENT BROADCAST</span>
+            <h3 class="deck-track-title" id="current-track-name">1. Ongehoord Collective | YAMI RECORDS (103)</h3>
+          </div>
+
+          <div class="deck-center">
+            <div class="deck-equalizer" id="visualizer-bars">
+              <div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div>
+              <div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div>
+              <div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div>
+              <div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div><div class="eq-col"></div>
+            </div>
+          </div>
+
+          <div class="deck-right">
+            <button class="transport-btn" id="prev-btn" title="Previous Set">⏮</button>
+            <button class="transport-btn play-btn-main" id="play-btn" title="Play / Pause">▶ PLAY</button>
+            <button class="transport-btn" id="pause-btn" title="Pause">⏸</button>
+            <button class="transport-btn" id="next-btn" title="Next Set">⏭</button>
+          </div>
+        </div>
+
+        <!-- DJ Sets Archive List (5 Sets) -->
+        <div class="sets-archive">
+          <div class="archive-header">
+            <span>ARCHIVE INDEX // 5 RECORDED SESSIONS</span>
+            <span>CLICK TO LOAD BROADCAST</span>
+          </div>
+
+          <div class="sets-list" id="dj-sets-container">
+
+            <!-- Set 1 -->
+            <div class="set-row active-set" data-set-index="0" data-video-id="MvYE8fAfuH4">
+              <div class="set-meta">
+                <span class="set-index">01</span>
+                <span class="set-channel">YAMI RECORDS</span>
+              </div>
+              <div class="set-title-wrap">
+                <h4 class="set-title">Ongehoord Collective | YAMI RECORDS (103)</h4>
+                <p class="set-desc">Curated underground selection &bull; Resident Showcase</p>
+              </div>
+              <div class="set-actions">
+                <button class="action-btn play-track-btn" data-video-id="MvYE8fAfuH4" data-index="0">Play Session</button>
+                <a href="https://youtu.be/MvYE8fAfuH4" target="_blank" rel="noopener noreferrer" class="action-link">YouTube ↗</a>
+              </div>
+            </div>
+
+            <!-- Set 2 -->
+            <div class="set-row" data-set-index="1" data-video-id="keA0EYOCnQM">
+              <div class="set-meta">
+                <span class="set-index">02</span>
+                <span class="set-channel">COMALA RADIO</span>
+              </div>
+              <div class="set-title-wrap">
+                <h4 class="set-title">Simon Nachtergaele @comalaradio</h4>
+                <p class="set-desc">Recorded live &bull; 05.08.2026</p>
+              </div>
+              <div class="set-actions">
+                <button class="action-btn play-track-btn" data-video-id="keA0EYOCnQM" data-index="1">Play Session</button>
+                <a href="https://youtu.be/keA0EYOCnQM" target="_blank" rel="noopener noreferrer" class="action-link">YouTube ↗</a>
+              </div>
+            </div>
+
+            <!-- Set 3 -->
+            <div class="set-row" data-set-index="2" data-video-id="MEuUfsyMybs">
+              <div class="set-meta">
+                <span class="set-index">03</span>
+                <span class="set-channel">RADIO RUIT</span>
+              </div>
+              <div class="set-title-wrap">
+                <h4 class="set-title">Simon Nachtergaele live at Radio Ruit</h4>
+                <p class="set-desc">Studio broadcast &bull; 06.02.2026</p>
+              </div>
+              <div class="set-actions">
+                <button class="action-btn play-track-btn" data-video-id="MEuUfsyMybs" data-index="2">Play Session</button>
+                <a href="https://youtu.be/MEuUfsyMybs" target="_blank" rel="noopener noreferrer" class="action-link">YouTube ↗</a>
+              </div>
+            </div>
+
+            <!-- Set 4 -->
+            <div class="set-row" data-set-index="3" data-video-id="LXlFbAsZi4A">
+              <div class="set-meta">
+                <span class="set-index">04</span>
+                <span class="set-channel">RADIO RUIT</span>
+              </div>
+              <div class="set-title-wrap">
+                <h4 class="set-title">Simon Nachtergaele live at Radio Ruit</h4>
+                <p class="set-desc">Electro, breaks &amp; deep rhythms &bull; 24.10.2025</p>
+              </div>
+              <div class="set-actions">
+                <button class="action-btn play-track-btn" data-video-id="LXlFbAsZi4A" data-index="3">Play Session</button>
+                <a href="https://youtu.be/LXlFbAsZi4A" target="_blank" rel="noopener noreferrer" class="action-link">YouTube ↗</a>
+              </div>
+            </div>
+
+            <!-- Set 5 -->
+            <div class="set-row" data-set-index="4" data-video-id="sieDJ4si6RU">
+              <div class="set-meta">
+                <span class="set-index">05</span>
+                <span class="set-channel">RADIO RUIT</span>
+              </div>
+              <div class="set-title-wrap">
+                <h4 class="set-title">Simon Nachtergaele live at Radio Ruit</h4>
+                <p class="set-desc">Summer evening session &bull; 13.06.2025</p>
+              </div>
+              <div class="set-actions">
+                <button class="action-btn play-track-btn" data-video-id="sieDJ4si6RU" data-index="4">Play Session</button>
+                <a href="https://youtu.be/sieDJ4si6RU" target="_blank" rel="noopener noreferrer" class="action-link">YouTube ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== 04 / LIBRARY & READINGS ==================== -->
+    <section class="page-section" id="library">
+      <div class="section-header">
+        <div class="section-badge">04 // LITERATURE &amp; RESEARCH</div>
+        <div class="header-split">
+          <h2 class="section-heading">Selected Library &bull; 47 Volumes</h2>
+          <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="external-pill">
+            Goodreads Profile ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Library Search & Filter Matrix -->
+      <div class="library-controls">
+        <div class="search-input-wrapper">
+          <span class="search-symbol">/</span>
+          <input 
+            type="text" 
+            id="book-search-input" 
+            class="library-search-input" 
+            placeholder="Search by title, author, or keyword (e.g. Fanon, Plato, Jobs, Toyota, 1984)..." 
+          />
+          <button id="clear-search-btn" class="clear-btn" title="Clear filter">✕</button>
+        </div>
+
+        <div class="filter-sort-row">
+          <div class="shelf-tabs">
+            <button class="shelf-tab active" data-filter="all">All (<span id="count-all">47</span>)</button>
+            <button class="shelf-tab" data-filter="currently-reading">Currently Reading (<span id="count-reading">3</span>)</button>
+            <button class="shelf-tab" data-filter="five-stars">5-Star Selected</button>
+            <button class="shelf-tab" data-filter="read">Read</button>
+          </div>
+
+          <div class="sort-wrapper">
+            <label for="book-sort-select" class="sort-label">Sort:</label>
+            <select id="book-sort-select" class="sort-select">
+              <option value="default">Default / Recent</option>
+              <option value="rating-high">Highest Rated (5★ ➔ 1★)</option>
+              <option value="title-az">Title (A ➔ Z)</option>
+              <option value="year-desc">Published (Newest)</option>
+              <option value="year-asc">Published (Oldest)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="library-status-bar">
+          <span class="status-summary">Showing <strong id="results-count">47</strong> volumes</span>
+          <div class="sync-group">
+            <button id="sync-goodreads-btn" class="sync-btn">Sync Feed</button>
+            <span class="sync-indicator" id="db-sync-status-badge">Synced</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="db-loading-indicator" class="loading-state" style="display: none;">
+        Loading library records...
+      </div>
+
+      <!-- Editorial Books Grid Container -->
+      <div class="editorial-books-grid" id="dynamic-books-container">
+        <!-- Injected via app.js -->
+      </div>
+    </section>
+
+
+    <!-- ==================== 05 / TRANSMISSION & CONTACT ==================== -->
+    <section class="page-section" id="contact">
+      <div class="section-header">
+        <div class="section-badge">05 // CONTACT &amp; FREQUENCIES</div>
+        <h2 class="section-heading">Direct Channels</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-col">
+          <h3 class="contact-group-title">DIRECT INQUIRIES</h3>
+          <p class="contact-note">
+            For professional inquiries in supply chain planning, operations digitalisation, or DJ performance bookings:
+          </p>
+
+          <ul class="contact-links-list">
+            <li>
+              <span class="contact-type">Email</span>
+              <a href="mailto:simon.nachtergaele@gmail.com" class="contact-val">simon.nachtergaele@gmail.com</a>
+            </li>
+            <li>
+              <span class="contact-type">Phone</span>
+              <a href="tel:+32494753798" class="contact-val">+32 494 75 37 98</a>
+            </li>
+            <li>
+              <span class="contact-type">Location</span>
+              <span class="contact-val">Ghent / Brussels, Belgium</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-col">
+          <h3 class="contact-group-title">DIGITAL NETWORKS</h3>
+          <ul class="contact-links-list">
+            <li>
+              <span class="contact-type">LinkedIn</span>
+              <a href="https://linkedin.com/in/simon-nachtergaele/" target="_blank" rel="noopener noreferrer" class="contact-val">linkedin.com/in/simon-nachtergaele ↗</a>
+            </li>
+            <li>
+              <span class="contact-type">GitHub</span>
+              <a href="https://github.com/simonn8" target="_blank" rel="noopener noreferrer" class="contact-val">github.com/simonn8 ↗</a>
+            </li>
+            <li>
+              <span class="contact-type">Goodreads</span>
+              <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="contact-val">goodreads.com/simon-nachtergaele ↗</a>
+            </li>
+            <li>
+              <span class="contact-type">Ongehoord</span>
+              <a href="https://instagram.com/ongehoord.events" target="_blank" rel="noopener noreferrer" class="contact-val">@ongehoord.events ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MINIMALIST EDITORIAL FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>&copy; 2026 SIMON NACHTERGAELE</span>
+        <span class="footer-sep">/</span>
+        <span>GHENT &bull; BELGIUM</span>
+      </div>
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top">TOP ↑</a>
+      </div>
     </div>
-
-  </div>
-
-
-  <!-- =========================================================================
-       3. 1996 RETRO FOOTER BADGES & VISITOR COUNTER
-       ========================================================================= -->
-  <footer class="space-footer">
-    <div class="space-visitor-counter">
-      <span class="counter-tag">TRANSMISSIONS RECEIVED:</span>
-      <div class="counter-odometer" id="visitor-count">001996</div>
-    </div>
-
-    <div class="space-retro-badges">
-      <span class="retro-badge badge-spacejam">SPACE JAM '96 THEME</span>
-      <span class="retro-badge badge-netscape">NETSCAPE READY</span>
-      <span class="retro-badge badge-db">JSON DATABASE ENGINE</span>
-      <span class="retro-badge badge-y2k">100% Y2K COMPLIANT</span>
-      <span class="retro-badge badge-git">POWERED BY GIT</span>
-    </div>
-
-    <p class="copyright-text">
-      &copy; 1996 - 2026 Simon Nachtergaele &bull; Built for Learning &amp; High-Flying Cosmic Fun 🚀
-    </p>
   </footer>
 
-  <!-- =========================================================================
-       4. PERSISTENT FLOATING LUNAR AUDIO DECK BAR (Always in Orbit)
-       ========================================================================= -->
-  <aside class="floating-orbit-audio-bar" id="floating-audio-bar">
-    <div class="audio-bar-inner">
-      <div class="audio-bar-left">
-        <span class="audio-pulse-dot">●</span>
-        <span class="audio-bar-label">LUNAR AUDIO:</span>
-        <span class="audio-bar-track-title" id="bar-track-title">1. Ongehoord Collective | YAMI RECORDS (103)</span>
+  <!-- ==================== PERSISTENT BOTTOM AUDIO DOCK ==================== -->
+  <aside class="floating-audio-dock" id="floating-audio-bar">
+    <div class="dock-inner">
+      <div class="dock-left">
+        <span class="dock-live-dot"></span>
+        <span class="dock-label">AUDIO:</span>
+        <span class="dock-title" id="bar-track-title">1. Ongehoord Collective | YAMI RECORDS (103)</span>
       </div>
-      <div class="audio-bar-center">
-        <button class="mini-console-btn" id="bar-prev-btn" title="Previous Set">⏮</button>
-        <button class="mini-console-btn active" id="bar-play-btn" title="Play / Pause">▶ / ⏸</button>
-        <button class="mini-console-btn" id="bar-next-btn" title="Next Set">⏭</button>
+      <div class="dock-center">
+        <button class="dock-btn" id="bar-prev-btn" title="Previous Set">⏮</button>
+        <button class="dock-btn active" id="bar-play-btn" title="Play / Pause">▶ / ⏸</button>
+        <button class="dock-btn" id="bar-next-btn" title="Next Set">⏭</button>
       </div>
-      <div class="audio-bar-right">
-        <button class="mini-console-btn jump-to-audio-btn" data-target="planet-audio">🎧 Open Full Deck</button>
+      <div class="dock-right">
+        <a href="#sound" class="dock-link">Expand Player ↓</a>
       </div>
     </div>
   </aside>
