@@ -856,21 +856,214 @@ html, body {
   color: var(--neon-cyan);
 }
 
+/* CRT Video / Audio Screen */
+.crt-monitor-frame {
+  position: relative;
+  background: #000000;
+  border: 4px solid #1a2250;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.9);
+  margin-bottom: 14px;
+}
+
+.crt-screen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.youtube-embed-wrapper {
+  position: relative;
+  padding-bottom: 45%; /* 16:9 widescreen or compact audio video frame */
+  height: 0;
+  overflow: hidden;
+  background: #000000;
+}
+
+@media (max-width: 600px) {
+  .youtube-embed-wrapper {
+    padding-bottom: 56.25%;
+  }
+}
+
+.youtube-embed-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.dj-sets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .mix-row {
   background: #0e112d;
-  border: 1px solid #232857;
+  border: 2px solid #232857;
   padding: 10px 14px;
-  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 6px;
+  flex-wrap: wrap;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.mix-row:hover {
+  border-color: var(--neon-cyan);
+  background: #141840;
+}
+
+.mix-row.active-mix {
+  border-color: var(--neon-lime);
+  background: #0d2426;
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+}
+
+.mix-thumb-box {
+  position: relative;
+  width: 80px;
+  height: 50px;
+  flex-shrink: 0;
   border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #333d77;
+}
+
+.mix-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mix-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--neon-cyan);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+.mix-badge.latest {
+  background: var(--neon-lime);
+  color: #000000;
+  font-weight: bold;
+}
+
+.mix-info {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.mix-info h4 { font-size: 13px; color: #ffffff; margin-bottom: 2px; }
+.mix-info p { font-size: 11px; color: var(--text-muted); }
+
+.mix-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* 7b. Persistent Floating Lunar Audio Bar */
+.floating-orbit-audio-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(8, 10, 28, 0.95);
+  border-top: 2px solid var(--neon-lime);
+  box-shadow: 0 -4px 15px rgba(0, 255, 102, 0.3);
+  z-index: 100;
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.audio-bar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.mix-info h4 { font-size: 13px; color: #ffffff; }
-.mix-info p { font-size: 11px; color: var(--text-muted); }
+.audio-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 550px;
+}
+
+.audio-pulse-dot {
+  color: var(--neon-lime);
+  font-size: 14px;
+  animation: starTwinkle 1s infinite alternate;
+}
+
+.audio-bar-label {
+  color: var(--neon-cyan);
+  font-weight: bold;
+}
+
+.audio-bar-track-title {
+  color: var(--neon-yellow);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.audio-bar-center {
+  display: flex;
+  gap: 6px;
+}
+
+.mini-console-btn {
+  background: #181d42;
+  border: 1px solid #3d4a94;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.mini-console-btn:hover, .mini-console-btn.active {
+  background: var(--neon-lime);
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.jump-to-audio-btn {
+  background: #330055;
+  border-color: var(--neon-magenta);
+  color: var(--neon-cyan);
+}
+
+.jump-to-audio-btn:hover {
+  background: var(--neon-magenta);
+  color: #ffffff;
+}
 
 /* =========================================================================
    8. STELLAR BOOKSHELF & DATABASE QUERY ENGINE

@@ -284,19 +284,48 @@ function escapeHtml(str) {
 }
 
 /* =========================================================================
-   3. LUNAR TUNES AUDIO PLAYER
+   3. LUNAR TUNES AUDIO PLAYER & YOUTUBE STREAM ENGINE
    ========================================================================= */
+const djSets = [
+  {
+    id: "MvYE8fAfuH4",
+    title: "1. Ongehoord Collective | YAMI RECORDS (103)",
+    channel: "YAMI RECORDS",
+    date: "Latest Session"
+  },
+  {
+    id: "keA0EYOCnQM",
+    title: "2. Simon Nachtergaele @comalaradio | 05.08.26",
+    channel: "Comala Radio",
+    date: "05.08.26"
+  },
+  {
+    id: "MEuUfsyMybs",
+    title: "3. Simon Nachtergaele live at Radio Ruit 06.02.2026",
+    channel: "Radio Ruit",
+    date: "06.02.26"
+  },
+  {
+    id: "LXlFbAsZi4A",
+    title: "4. Simon Nachtergaele live at Radio Ruit 24.10.25",
+    channel: "Radio Ruit",
+    date: "24.10.25"
+  },
+  {
+    id: "sieDJ4si6RU",
+    title: "5. Simon Nachtergaele live at Radio Ruit 13.06.25",
+    channel: "Radio Ruit",
+    date: "13.06.25"
+  }
+];
+
+let currentTrackIndex = 0;
+let isAudioPlaying = true;
+
 function initLunarAudioPlayer() {
-  const tracks = [
-    { title: "01. Simon - Late Night Grooves & Electro Session", duration: "60:00" },
-    { title: "02. Simon - Underground Vibes Volume 1", duration: "45:00" },
-    { title: "03. Simon - Summer Sunset Live Recording", duration: "75:00" },
-  ];
-
-  let currentTrackIndex = 0;
-  let isPlaying = false;
-
+  const iframe = document.getElementById("main-youtube-iframe");
   const titleEl = document.getElementById("current-track-name");
+  const barTitleEl = document.getElementById("bar-track-title");
   const statusEl = document.getElementById("playback-status");
   const visualizerEl = document.getElementById("visualizer-bars");
   const playBtn = document.getElementById("play-btn");
@@ -304,43 +333,149 @@ function initLunarAudioPlayer() {
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
 
-  function updateTrack() {
-    if (titleEl) {
-      titleEl.textContent = tracks[currentTrackIndex].title;
+  const barPlayBtn = document.getElementById("bar-play-btn");
+  const barPrevBtn = document.getElementById("bar-prev-btn");
+  const barNextBtn = document.getElementById("bar-next-btn");
+  const jumpAudioBtn = document.querySelector(".jump-to-audio-btn");
+
+  function loadTrack(index, autoPlay = true) {
+    currentTrackIndex = (index + djSets.length) % djSets.length;
+    const track = djSets[currentTrackIndex];
+
+    // Update Iframe Source with Autoplay
+    if (iframe) {
+      const autoParam = autoPlay ? "1" : "0";
+      iframe.src = `https://www.youtube.com/embed/${track.id}?enablejsapi=1&autoplay=${autoParam}&origin=${window.location.origin}`;
     }
+
+    // Update Text Titles
+    if (titleEl) titleEl.textContent = track.title;
+    if (barTitleEl) barTitleEl.textContent = track.title;
+
+    // Highlight Active Mix in List
+    const mixRows = document.querySelectorAll(".mix-row");
+    mixRows.forEach((row, rIdx) => {
+      if (rIdx === currentTrackIndex) {
+        row.classList.add("active-mix");
+      } else {
+        row.classList.remove("active-mix");
+      }
+    });
+
+    setAudioState(autoPlay);
   }
 
-  function setPlayingState(playing) {
-    isPlaying = playing;
-    if (isPlaying) {
-      statusEl.textContent = "STATUS: BROADCASTING IN ORBIT 🎵";
-      statusEl.style.color = "var(--neon-lime)";
+  function setAudioState(playing) {
+    isAudioPlaying = playing;
+    if (isAudioPlaying) {
+      if (statusEl) {
+        statusEl.textContent = "STATUS: BROADCASTING IN ORBIT 🎵";
+        statusEl.style.color = "var(--neon-lime)";
+      }
       if (visualizerEl) visualizerEl.classList.add("playing");
+      if (barPlayBtn) {
+        barPlayBtn.textContent = "⏸ PAUSE";
+        barPlayBtn.classList.add("active");
+      }
+      if (playBtn) playBtn.classList.add("play-active");
     } else {
-      statusEl.textContent = "STATUS: TRANSMISSION PAUSED ⏸";
-      statusEl.style.color = "var(--neon-yellow)";
+      if (statusEl) {
+        statusEl.textContent = "STATUS: TRANSMISSION PAUSED ⏸";
+        statusEl.style.color = "var(--neon-yellow)";
+      }
       if (visualizerEl) visualizerEl.classList.remove("playing");
+      if (barPlayBtn) {
+        barPlayBtn.textContent = "▶ PLAY";
+        barPlayBtn.classList.remove("active");
+      }
+      if (playBtn) playBtn.classList.remove("play-active");
+
+      // Pause via postMessage to YouTube IFrame API
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      }
     }
   }
 
-  if (playBtn) playBtn.addEventListener("click", () => setPlayingState(true));
-  if (pauseBtn) pauseBtn.addEventListener("click", () => setPlayingState(false));
+  function playCurrentTrack() {
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
+    setAudioState(true);
+  }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-      updateTrack();
-      setPlayingState(true);
+  // Hook Up Controls
+  if (playBtn) playBtn.addEventListener("click", () => playCurrentTrack());
+  if (pauseBtn) pauseBtn.addEventListener("click", () => setAudioState(false));
+  if (nextBtn) nextBtn.addEventListener("click", () => loadTrack(currentTrackIndex + 1, true));
+  if (prevBtn) prevBtn.addEventListener("click", () => loadTrack(currentTrackIndex - 1, true));
+
+  // Floating Bar Controls
+  if (barPlayBtn) {
+    barPlayBtn.addEventListener("click", () => {
+      if (isAudioPlaying) {
+        setAudioState(false);
+      } else {
+        playCurrentTrack();
+      }
+    });
+  }
+  if (barNextBtn) barNextBtn.addEventListener("click", () => loadTrack(currentTrackIndex + 1, true));
+  if (barPrevBtn) barPrevBtn.addEventListener("click", () => loadTrack(currentTrackIndex - 1, true));
+
+  if (jumpAudioBtn) {
+    jumpAudioBtn.addEventListener("click", () => {
+      const solarHub = document.getElementById("solar-hub");
+      const contentContainer = document.getElementById("content-container");
+      const activePanelTitle = document.getElementById("active-panel-title");
+      const sections = document.querySelectorAll(".cosmic-section");
+
+      if (solarHub) solarHub.style.display = "none";
+      if (contentContainer) contentContainer.style.display = "block";
+      sections.forEach((sec) => sec.classList.remove("active"));
+
+      const audioSec = document.getElementById("planet-audio");
+      if (audioSec) audioSec.classList.add("active");
+      if (activePanelTitle) activePanelTitle.innerHTML = "🎧 LUNAR TUNES &bull; DJ AUDIO DECK";
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-      updateTrack();
-      setPlayingState(true);
+  // Hook Up Track List Buttons
+  const playButtons = document.querySelectorAll(".play-track-btn");
+  playButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.getAttribute("data-index"), 10);
+      loadTrack(idx, true);
     });
-  }
+  });
+
+  const mixRows = document.querySelectorAll(".mix-row");
+  mixRows.forEach((row) => {
+    row.addEventListener("click", () => {
+      const idx = parseInt(row.getAttribute("data-set-index"), 10);
+      loadTrack(idx, true);
+    });
+  });
+
+  // Autoplay Initialization: Load the latest set immediately
+  loadTrack(0, true);
+
+  // Browser Autoplay Policy Fallback: Trigger play on first user interaction anywhere
+  const kickAutoplayOnInteraction = () => {
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
+    setAudioState(true);
+    window.removeEventListener("click", kickAutoplayOnInteraction);
+    window.removeEventListener("touchstart", kickAutoplayOnInteraction);
+    window.removeEventListener("keydown", kickAutoplayOnInteraction);
+  };
+
+  window.addEventListener("click", kickAutoplayOnInteraction, { once: true });
+  window.addEventListener("touchstart", kickAutoplayOnInteraction, { once: true });
+  window.addEventListener("keydown", kickAutoplayOnInteraction, { once: true });
 }
 
 /* =========================================================================

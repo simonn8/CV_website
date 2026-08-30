@@ -375,21 +375,40 @@
         <!-- ==================== SECTION 4: LUNAR TUNES (DJ SETS) ==================== -->
         <section id="planet-audio" class="cosmic-section">
           <div class="section-title-wrap">
-            <h2 class="space-glow-text">🎧 Lunar Tunes &bull; DJ Sets &amp; Sonic Transmissions</h2>
-            <p class="section-desc">Broadcasts of underground grooves, electro rhythms, and live recorded sessions.</p>
+            <div>
+              <h2 class="space-glow-text">🎧 Lunar Tunes &bull; Live DJ Sets &amp; Broadcasts</h2>
+              <p class="section-desc">Recorded live sessions from Radio Ruit, Comala Radio, and YAMI RECORDS &bull; Autoplaying in Orbit</p>
+            </div>
+            <a href="https://www.youtube.com/@radioruit" target="_blank" rel="noopener noreferrer" class="retro-btn-space">
+              📺 RADIO RUIT CHANNEL ↗
+            </a>
           </div>
 
-          <!-- Space Winamp Player -->
+          <!-- Space CRT Broadcast Monitor & Winamp Console -->
           <div class="lunar-player-console">
             <div class="console-titlebar">
-              <span>💽 SIMON-AMP '96 &bull; LUNAR AUDIO DECK</span>
-              <span class="console-status-pill">STEREO 44.1kHz DIGITAL</span>
+              <span>💽 SIMON-AMP '96 &bull; LUNAR VIDEO &amp; AUDIO BROADCASTER</span>
+              <span class="console-status-pill" id="live-broadcast-pill">● LIVE ON AIR</span>
+            </div>
+
+            <!-- Embedded Video / Audio Screen -->
+            <div class="crt-monitor-frame">
+              <div class="crt-screen-overlay"></div>
+              <div id="youtube-embed-wrapper" class="youtube-embed-wrapper">
+                <iframe 
+                  id="main-youtube-iframe"
+                  src="https://www.youtube.com/embed/MvYE8fAfuH4?enablejsapi=1&autoplay=1&origin=https://simonn8.github.io"
+                  title="Simon Nachtergaele DJ Set"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
             </div>
 
             <div class="console-lcd-screen">
               <div class="lcd-track-details">
-                <span class="lcd-label">NOW BROADCASTING:</span>
-                <span class="lcd-track-title" id="current-track-name">01. Simon - Late Night Grooves &amp; Electro Session</span>
+                <span class="lcd-label">NOW BROADCASTING (AUTOPLAY LOADED):</span>
+                <span class="lcd-track-title" id="current-track-name">1. Ongehoord Collective | YAMI RECORDS (103)</span>
               </div>
               <div class="lcd-equalizer" id="visualizer-bars">
                 <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
@@ -400,48 +419,101 @@
             </div>
 
             <div class="console-controls">
-              <button class="console-btn" id="prev-btn">⏮ PREV</button>
+              <button class="console-btn" id="prev-btn">⏮ PREV SET</button>
               <button class="console-btn play-active" id="play-btn">▶ PLAY</button>
               <button class="console-btn" id="pause-btn">⏸ PAUSE</button>
-              <button class="console-btn" id="next-btn">⏭ NEXT</button>
-              <div class="console-status-text" id="playback-status">STATUS: READY FOR TRANSMISSION</div>
+              <button class="console-btn" id="next-btn">⏭ NEXT SET</button>
+              <div class="console-status-text" id="playback-status">STATUS: AUTOPLAY INITIALIZED 🎵</div>
             </div>
           </div>
 
-          <!-- Tracklist / Mix Sessions -->
+          <!-- All 5 Real DJ Sets Grid -->
           <div class="cosmic-card">
-            <h3 class="card-heading yellow-heading">🎶 AVAILABLE MIX SESSIONS</h3>
-            
-            <div class="mix-row">
-              <div class="mix-info">
-                <h4>1. Late Night Grooves &amp; Electro Session</h4>
-                <p>Genre: House / Electro / Breaks &bull; Duration: 60 mins</p>
-              </div>
-              <div class="mix-buttons">
-                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">SoundCloud ↗</a>
-                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">Mixcloud ↗</a>
-              </div>
-            </div>
+            <h3 class="card-heading yellow-heading">🎶 COMPLETE DJ SESSIONS &amp; RECORDINGS (5 SETS)</h3>
+            <p class="section-desc mb-15">Click any session below to switch the player broadcast instantly:</p>
 
-            <div class="mix-row">
-              <div class="mix-info">
-                <h4>2. Underground Vibes Volume 1</h4>
-                <p>Genre: Deep Techno / Minimal &bull; Duration: 45 mins</p>
-              </div>
-              <div class="mix-buttons">
-                <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">SoundCloud ↗</a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
-              </div>
-            </div>
+            <div class="dj-sets-list" id="dj-sets-container">
 
-            <div class="mix-row">
-              <div class="mix-info">
-                <h4>3. Summer Sunset Live Recording</h4>
-                <p>Genre: Melodic / Progressive &bull; Duration: 75 mins</p>
+              <!-- Set 1 (Latest) -->
+              <div class="mix-row active-mix" data-set-index="0" data-video-id="MvYE8fAfuH4">
+                <div class="mix-thumb-box">
+                  <img src="https://i.ytimg.com/vi/MvYE8fAfuH4/hqdefault.jpg" alt="Ongehoord Collective | YAMI RECORDS (103)" class="mix-thumb" />
+                  <span class="mix-badge latest">● LATEST SET</span>
+                </div>
+                <div class="mix-info">
+                  <h4>1. Ongehoord Collective | YAMI RECORDS (103)</h4>
+                  <p>Channel: <strong>YAMI RECORDS</strong> &bull; Curated Underground Selection</p>
+                </div>
+                <div class="mix-buttons">
+                  <button class="retro-btn-space sm play-track-btn" data-video-id="MvYE8fAfuH4" data-index="0">▶ Play Here</button>
+                  <a href="https://youtu.be/MvYE8fAfuH4" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
+                </div>
               </div>
-              <div class="mix-buttons">
-                <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">Mixcloud ↗</a>
+
+              <!-- Set 2 -->
+              <div class="mix-row" data-set-index="1" data-video-id="keA0EYOCnQM">
+                <div class="mix-thumb-box">
+                  <img src="https://i.ytimg.com/vi/keA0EYOCnQM/hqdefault.jpg" alt="Simon Nachtergaele @comalaradio" class="mix-thumb" />
+                  <span class="mix-badge">05.08.26</span>
+                </div>
+                <div class="mix-info">
+                  <h4>2. Simon Nachtergaele @comalaradio</h4>
+                  <p>Channel: <strong>Comala Radio</strong> &bull; Recorded 05.08.2026</p>
+                </div>
+                <div class="mix-buttons">
+                  <button class="retro-btn-space sm play-track-btn" data-video-id="keA0EYOCnQM" data-index="1">▶ Play Here</button>
+                  <a href="https://youtu.be/keA0EYOCnQM" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
+                </div>
               </div>
+
+              <!-- Set 3 -->
+              <div class="mix-row" data-set-index="2" data-video-id="MEuUfsyMybs">
+                <div class="mix-thumb-box">
+                  <img src="https://i.ytimg.com/vi/MEuUfsyMybs/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 06.02.2026" class="mix-thumb" />
+                  <span class="mix-badge">06.02.26</span>
+                </div>
+                <div class="mix-info">
+                  <h4>3. Simon Nachtergaele live at Radio Ruit</h4>
+                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 06.02.2026 &bull; Deep Grooves</p>
+                </div>
+                <div class="mix-buttons">
+                  <button class="retro-btn-space sm play-track-btn" data-video-id="MEuUfsyMybs" data-index="2">▶ Play Here</button>
+                  <a href="https://youtu.be/MEuUfsyMybs" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
+                </div>
+              </div>
+
+              <!-- Set 4 -->
+              <div class="mix-row" data-set-index="3" data-video-id="LXlFbAsZi4A">
+                <div class="mix-thumb-box">
+                  <img src="https://i.ytimg.com/vi/LXlFbAsZi4A/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 24.10.25" class="mix-thumb" />
+                  <span class="mix-badge">24.10.25</span>
+                </div>
+                <div class="mix-info">
+                  <h4>4. Simon Nachtergaele live at Radio Ruit</h4>
+                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 24.10.2025 &bull; Electro &amp; Breaks</p>
+                </div>
+                <div class="mix-buttons">
+                  <button class="retro-btn-space sm play-track-btn" data-video-id="LXlFbAsZi4A" data-index="3">▶ Play Here</button>
+                  <a href="https://youtu.be/LXlFbAsZi4A" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
+                </div>
+              </div>
+
+              <!-- Set 5 -->
+              <div class="mix-row" data-set-index="4" data-video-id="sieDJ4si6RU">
+                <div class="mix-thumb-box">
+                  <img src="https://i.ytimg.com/vi/sieDJ4si6RU/hqdefault.jpg" alt="Simon Nachtergaele live at Radio Ruit 13.06.25" class="mix-thumb" />
+                  <span class="mix-badge">13.06.25</span>
+                </div>
+                <div class="mix-info">
+                  <h4>5. Simon Nachtergaele live at Radio Ruit</h4>
+                  <p>Channel: <strong>Radio Ruit</strong> &bull; Recorded 13.06.2025 &bull; Summer Session</p>
+                </div>
+                <div class="mix-buttons">
+                  <button class="retro-btn-space sm play-track-btn" data-video-id="sieDJ4si6RU" data-index="4">▶ Play Here</button>
+                  <a href="https://youtu.be/sieDJ4si6RU" target="_blank" rel="noopener noreferrer" class="retro-btn-space sm">YouTube ↗</a>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
@@ -631,6 +703,27 @@
       &copy; 1996 - 2026 Simon Nachtergaele &bull; Built for Learning &amp; High-Flying Cosmic Fun 🚀
     </p>
   </footer>
+
+  <!-- =========================================================================
+       4. PERSISTENT FLOATING LUNAR AUDIO DECK BAR (Always in Orbit)
+       ========================================================================= -->
+  <aside class="floating-orbit-audio-bar" id="floating-audio-bar">
+    <div class="audio-bar-inner">
+      <div class="audio-bar-left">
+        <span class="audio-pulse-dot">●</span>
+        <span class="audio-bar-label">LUNAR AUDIO:</span>
+        <span class="audio-bar-track-title" id="bar-track-title">1. Ongehoord Collective | YAMI RECORDS (103)</span>
+      </div>
+      <div class="audio-bar-center">
+        <button class="mini-console-btn" id="bar-prev-btn" title="Previous Set">⏮</button>
+        <button class="mini-console-btn active" id="bar-play-btn" title="Play / Pause">▶ / ⏸</button>
+        <button class="mini-console-btn" id="bar-next-btn" title="Next Set">⏭</button>
+      </div>
+      <div class="audio-bar-right">
+        <button class="mini-console-btn jump-to-audio-btn" data-target="planet-audio">🎧 Open Full Deck</button>
+      </div>
+    </div>
+  </aside>
 
   <script src="app.js"></script>
 </body>
