@@ -395,11 +395,12 @@
             <div class="crt-monitor-frame">
               <div class="crt-screen-overlay"></div>
               <div id="youtube-embed-wrapper" class="youtube-embed-wrapper">
+                <div id="youtube-player"></div>
                 <iframe 
                   id="main-youtube-iframe"
-                  src="https://www.youtube.com/embed/MvYE8fAfuH4?enablejsapi=1&autoplay=1&origin=https://simonn8.github.io"
+                  src="https://www.youtube.com/embed/MvYE8fAfuH4?autoplay=1&enablejsapi=1&playsinline=1"
                   title="Simon Nachtergaele DJ Set"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen>
                 </iframe>
               </div>
@@ -407,7 +408,7 @@
 
             <div class="console-lcd-screen">
               <div class="lcd-track-details">
-                <span class="lcd-label">NOW BROADCASTING (AUTOPLAY LOADED):</span>
+                <span class="lcd-label">NOW BROADCASTING:</span>
                 <span class="lcd-track-title" id="current-track-name">1. Ongehoord Collective | YAMI RECORDS (103)</span>
               </div>
               <div class="lcd-equalizer" id="visualizer-bars">
@@ -420,10 +421,10 @@
 
             <div class="console-controls">
               <button class="console-btn" id="prev-btn">⏮ PREV SET</button>
-              <button class="console-btn play-active" id="play-btn">▶ PLAY</button>
+              <button class="console-btn play-active" id="play-btn">▶ PLAY / UNMUTE</button>
               <button class="console-btn" id="pause-btn">⏸ PAUSE</button>
               <button class="console-btn" id="next-btn">⏭ NEXT SET</button>
-              <div class="console-status-text" id="playback-status">STATUS: AUTOPLAY INITIALIZED 🎵</div>
+              <div class="console-status-text" id="playback-status">STATUS: READY TO BROADCAST 🎵</div>
             </div>
           </div>
 
@@ -728,6 +729,8 @@
     </div>
   </aside>
 
+  <!-- YouTube IFrame Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="app.js"></script>
 </body>
 </html>

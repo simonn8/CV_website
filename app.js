@@ -350,7 +350,46 @@ const djSets = [
 ];
 
 let currentTrackIndex = 0;
-let isAudioPlaying = true;
+let isAudioPlaying = false;
+let ytPlayer = null;
+let isYTReady = false;
+
+// Global YouTube API Ready Callback
+window.onYouTubeIframeAPIReady = function () {
+  const container = document.getElementById("youtube-player");
+  if (!container) return;
+
+  ytPlayer = new YT.Player("youtube-player", {
+    height: "100%",
+    width: "100%",
+    videoId: djSets[currentTrackIndex].id,
+    playerVars: {
+      autoplay: 1,
+      playsinline: 1,
+      controls: 1,
+      rel: 0
+    },
+    events: {
+      onReady: (event) => {
+        isYTReady = true;
+        // Attempt autoplay
+        try {
+          event.target.playVideo();
+          setAudioState(true);
+        } catch (e) {
+          console.log("Autoplay waiting for user gesture...");
+        }
+      },
+      onStateChange: (event) => {
+        if (event.data === YT.PlayerState.PLAYING) {
+          setAudioState(true);
+        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+          setAudioState(false);
+        }
+      }
+    }
+  });
+};
 
 function initLunarAudioPlayer() {
   const iframe = document.getElementById("main-youtube-iframe");
@@ -372,10 +411,16 @@ function initLunarAudioPlayer() {
     currentTrackIndex = (index + djSets.length) % djSets.length;
     const track = djSets[currentTrackIndex];
 
-    // Update Iframe Source with Autoplay
-    if (iframe) {
+    // If YouTube IFrame API is active
+    if (ytPlayer && typeof ytPlayer.loadVideoById === "function") {
+      ytPlayer.loadVideoById(track.id);
+      if (autoPlay) {
+        ytPlayer.playVideo();
+      }
+    } else if (iframe) {
+      // Direct iframe fallback
       const autoParam = autoPlay ? "1" : "0";
-      iframe.src = `https://www.youtube.com/embed/${track.id}?enablejsapi=1&autoplay=${autoParam}&origin=${window.location.origin}`;
+      iframe.src = `https://www.youtube.com/embed/${track.id}?autoplay=${autoParam}&enablejsapi=1&playsinline=1`;
     }
 
     // Update Text Titles
@@ -419,24 +464,32 @@ function initLunarAudioPlayer() {
         barPlayBtn.classList.remove("active");
       }
       if (playBtn) playBtn.classList.remove("play-active");
-
-      // Pause via postMessage to YouTube IFrame API
-      if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-      }
     }
   }
 
   function playCurrentTrack() {
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    if (ytPlayer && typeof ytPlayer.playVideo === "function") {
+      ytPlayer.unMute();
+      ytPlayer.playVideo();
+    } else if (iframe) {
+      const track = djSets[currentTrackIndex];
+      iframe.src = `https://www.youtube.com/embed/${track.id}?autoplay=1&enablejsapi=1&playsinline=1`;
     }
     setAudioState(true);
   }
 
+  function pauseCurrentTrack() {
+    if (ytPlayer && typeof ytPlayer.pauseVideo === "function") {
+      ytPlayer.pauseVideo();
+    } else if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+    setAudioState(false);
+  }
+
   // Hook Up Controls
   if (playBtn) playBtn.addEventListener("click", () => playCurrentTrack());
-  if (pauseBtn) pauseBtn.addEventListener("click", () => setAudioState(false));
+  if (pauseBtn) pauseBtn.addEventListener("click", () => pauseCurrentTrack());
   if (nextBtn) nextBtn.addEventListener("click", () => loadTrack(currentTrackIndex + 1, true));
   if (prevBtn) prevBtn.addEventListener("click", () => loadTrack(currentTrackIndex - 1, true));
 
@@ -444,7 +497,7 @@ function initLunarAudioPlayer() {
   if (barPlayBtn) {
     barPlayBtn.addEventListener("click", () => {
       if (isAudioPlaying) {
-        setAudioState(false);
+        pauseCurrentTrack();
       } else {
         playCurrentTrack();
       }
@@ -492,20 +545,17 @@ function initLunarAudioPlayer() {
   // Autoplay Initialization: Load the latest set immediately
   loadTrack(0, true);
 
-  // Browser Autoplay Policy Fallback: Trigger play on first user interaction anywhere
-  const kickAutoplayOnInteraction = () => {
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    }
-    setAudioState(true);
-    window.removeEventListener("click", kickAutoplayOnInteraction);
-    window.removeEventListener("touchstart", kickAutoplayOnInteraction);
-    window.removeEventListener("keydown", kickAutoplayOnInteraction);
+  // Browser Autoplay Policy: On first user interaction, unmute and play
+  const kickAutoplayOnUserGesture = () => {
+    playCurrentTrack();
+    window.removeEventListener("click", kickAutoplayOnUserGesture);
+    window.removeEventListener("touchstart", kickAutoplayOnUserGesture);
+    window.removeEventListener("keydown", kickAutoplayOnUserGesture);
   };
 
-  window.addEventListener("click", kickAutoplayOnInteraction, { once: true });
-  window.addEventListener("touchstart", kickAutoplayOnInteraction, { once: true });
-  window.addEventListener("keydown", kickAutoplayOnInteraction, { once: true });
+  window.addEventListener("click", kickAutoplayOnUserGesture, { once: true });
+  window.addEventListener("touchstart", kickAutoplayOnUserGesture, { once: true });
+  window.addEventListener("keydown", kickAutoplayOnUserGesture, { once: true });
 }
 
 /* =========================================================================
