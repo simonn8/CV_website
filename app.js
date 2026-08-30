@@ -617,12 +617,20 @@ const INITIAL_LIBRARY_DATA = [
   }
 ];
 
+/* =========================================================================
+   GLOBAL STATE & ARCHITECTURE
+   ========================================================================= */
+
 let allBooks = INITIAL_LIBRARY_DATA;
 let currentFilter = 'all';
 let currentSearch = '';
 let currentSort = 'default';
+let visibleBooksCount = 8;
 
-// DJ Sets Archive (5 Sessions)
+/**
+ * Curated DJ Set Broadcasts Archive
+ * Each entry maps to an official YouTube broadcast id, title, channel, and recording date.
+ */
 const djSets = [
   {
     id: 'MvYE8fAfuH4',
@@ -658,9 +666,11 @@ const djSets = [
 
 let currentTrackIndex = 0;
 let isAudioPlaying = false;
-let ytPlayer = null;
-let isYTReady = false;
 
+/**
+ * Primary DOM Initializer
+ * Bootstraps all client subsystems upon DOM readiness.
+ */
 document.addEventListener('DOMContentLoaded', () => {
   initClock();
   initScrollSpy();
@@ -670,8 +680,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================================================
-   1. CLOCK (Ghent, BE Time)
+   1. REAL-TIME CLOCK (Ghent, BE Local Time)
    ========================================================================= */
+/**
+ * Updates the live Ghent, Belgium local time in the header every second.
+ */
 function initClock() {
   const clockEl = document.getElementById('local-clock');
   if (!clockEl) return;
@@ -687,6 +700,9 @@ function initClock() {
 /* =========================================================================
    2. SCROLL SPY & NAVIGATION HIGHLIGHTING
    ========================================================================= */
+/**
+ * Monitors scroll position and highlights the corresponding section tab in the sticky top nav.
+ */
 function initScrollSpy() {
   const sections = document.querySelectorAll('.page-section, .hero-section');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -712,30 +728,9 @@ function initScrollSpy() {
 /* =========================================================================
    3. SOUND STREAM & YOUTUBE PLAYER (UNIFIED SINGLE SOURCE)
    ========================================================================= */
-window.onYouTubeIframeAPIReady = function () {
-  const iframe = document.getElementById('main-youtube-iframe');
-  if (!iframe) return;
-
-  try {
-    ytPlayer = new YT.Player('main-youtube-iframe', {
-      events: {
-        onReady: () => {
-          isYTReady = true;
-        },
-        onStateChange: (event) => {
-          if (event.data === YT.PlayerState.PLAYING) {
-            setAudioState(true);
-          } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-            setAudioState(false);
-          }
-        }
-      }
-    });
-  } catch (e) {
-    console.error('YouTube Player Init:', e);
-  }
-};
-
+/**
+ * Manages video embedding, track switching, transport controls, and visualizer state.
+ */
 function initAudioStream() {
   const titleEl = document.getElementById('current-track-name');
   const barTitleEl = document.getElementById('bar-track-title');
@@ -750,6 +745,10 @@ function initAudioStream() {
   const barPrevBtn = document.getElementById('bar-prev-btn');
   const barNextBtn = document.getElementById('bar-next-btn');
 
+  /**
+   * Synchronizes visual indicators (equalizer bars, play/pause buttons) with playback state.
+   * @param {boolean} playing
+   */
   function setAudioState(playing) {
     isAudioPlaying = playing;
     if (isAudioPlaying) {
@@ -775,6 +774,11 @@ function initAudioStream() {
     }
   }
 
+  /**
+   * Loads a chosen DJ broadcast into the main video screen and updates active set indicators.
+   * @param {number} index - Index of track in djSets array
+   * @param {boolean} autoPlay - Whether to start playback immediately
+   */
   function loadTrack(index, autoPlay = true) {
     currentTrackIndex = (index + djSets.length) % djSets.length;
     const track = djSets[currentTrackIndex];
@@ -782,6 +786,7 @@ function initAudioStream() {
     if (titleEl) titleEl.textContent = track.title;
     if (barTitleEl) barTitleEl.textContent = track.title;
 
+    // Highlight active set row
     const setRows = document.querySelectorAll('.set-row');
     setRows.forEach((row, rIdx) => {
       if (rIdx === currentTrackIndex) {
@@ -791,6 +796,7 @@ function initAudioStream() {
       }
     });
 
+    // Reconstruct iframe with exact broadcast ID for guaranteed synchronization
     const screenWrapper = document.querySelector('.video-screen-wrapper');
     if (screenWrapper) {
       const autoParam = autoPlay ? 'autoplay=1&' : '';
@@ -809,6 +815,9 @@ function initAudioStream() {
     setAudioState(autoPlay);
   }
 
+  /**
+   * Resumes playback on the active iframe via YouTube postMessage command.
+   */
   function playTrack() {
     const iframe = document.getElementById('main-youtube-iframe');
     if (iframe && iframe.contentWindow) {
@@ -817,6 +826,9 @@ function initAudioStream() {
     setAudioState(true);
   }
 
+  /**
+   * Pauses playback on the active iframe via YouTube postMessage command.
+   */
   function pauseTrack() {
     const iframe = document.getElementById('main-youtube-iframe');
     if (iframe && iframe.contentWindow) {
@@ -825,15 +837,18 @@ function initAudioStream() {
     setAudioState(false);
   }
 
+  // Bind Main Deck Buttons
   if (playBtn) playBtn.addEventListener('click', () => (isAudioPlaying ? pauseTrack() : playTrack()));
   if (pauseBtn) pauseBtn.addEventListener('click', () => pauseTrack());
   if (nextBtn) nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1, true));
   if (prevBtn) prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1, true));
 
+  // Bind Floating Bottom Dock Buttons
   if (barPlayBtn) barPlayBtn.addEventListener('click', () => (isAudioPlaying ? pauseTrack() : playTrack()));
   if (barNextBtn) barNextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1, true));
   if (barPrevBtn) barPrevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1, true));
 
+  // Bind Set List Item Triggers
   const playButtons = document.querySelectorAll('.play-track-btn');
   playButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -855,8 +870,11 @@ function initAudioStream() {
 /* =========================================================================
    4. LIBRARY CATALOG & SEARCH ENGINE
    ========================================================================= */
+/**
+ * Initializes the 47-book Goodreads library with real-time search, category filtering,
+ * sort order options, and progressive pagination.
+ */
 async function initLibraryCatalog() {
-  const container = document.getElementById('dynamic-books-container');
   const searchInput = document.getElementById('book-search-input');
   const clearSearchBtn = document.getElementById('clear-search-btn');
   const shelfTabs = document.querySelectorAll('.shelf-tab');
@@ -866,6 +884,7 @@ async function initLibraryCatalog() {
 
   allBooks = INITIAL_LIBRARY_DATA;
 
+  // Attempt to load freshest local JSON build if available
   try {
     const res = await fetch('data/books.json');
     if (res.ok) {
@@ -875,12 +894,13 @@ async function initLibraryCatalog() {
       }
     }
   } catch (err) {
-    // Uses INITIAL_LIBRARY_DATA
+    // Graceful fallback to INITIAL_LIBRARY_DATA
   }
 
   updateCounters(allBooks);
   renderLibrary();
 
+  // Search input handler
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       currentSearch = e.target.value.trim().toLowerCase();
@@ -889,6 +909,7 @@ async function initLibraryCatalog() {
     });
   }
 
+  // Clear search handler
   if (clearSearchBtn) {
     clearSearchBtn.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
@@ -898,6 +919,7 @@ async function initLibraryCatalog() {
     });
   }
 
+  // Shelf category filter tabs
   shelfTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       shelfTabs.forEach((t) => t.classList.remove('active'));
@@ -908,6 +930,7 @@ async function initLibraryCatalog() {
     });
   });
 
+  // Sort dropdown handler
   if (sortSelect) {
     sortSelect.addEventListener('change', (e) => {
       currentSort = e.target.value;
@@ -916,6 +939,7 @@ async function initLibraryCatalog() {
     });
   }
 
+  // Live Goodreads RSS Sync Trigger
   if (syncBtn) {
     syncBtn.addEventListener('click', async () => {
       syncBtn.textContent = 'Syncing...';
@@ -940,8 +964,9 @@ async function initLibraryCatalog() {
   }
 }
 
-let visibleBooksCount = 8;
-
+/**
+ * Renders the filtered and sorted book collection into the editorial grid.
+ */
 function renderLibrary() {
   const container = document.getElementById('dynamic-books-container');
   const resultsCount = document.getElementById('results-count');
@@ -963,6 +988,7 @@ function renderLibrary() {
     return true;
   });
 
+  // Apply sorting
   if (currentSort === 'rating-high') {
     filtered.sort((a, b) => (b.user_rating || 0) - (a.user_rating || 0));
   } else if (currentSort === 'title-az') {
@@ -1016,6 +1042,7 @@ function renderLibrary() {
     `;
   }).join('');
 
+  // Render "Show More" pagination control when more items exist
   if (paginationContainer) {
     if (filtered.length > visibleBooksCount) {
       paginationContainer.innerHTML = `
@@ -1037,6 +1064,12 @@ function renderLibrary() {
   }
 }
 
+/**
+ * Generates star glyphs or status indicators based on user rating.
+ * @param {number} rating
+ * @param {boolean} isReading
+ * @returns {string} HTML string
+ */
 function renderStars(rating, isReading) {
   if (isReading) return '<span style="color: var(--accent-active); font-size: 11px;">In Progress</span>';
   const r = parseInt(rating, 10) || 0;
@@ -1046,6 +1079,10 @@ function renderStars(rating, isReading) {
   return `${full}${empty} <span style="color: var(--text-muted); font-size: 10px;">(${r}/5)</span>`;
 }
 
+/**
+ * Updates category counters across shelf filter tabs.
+ * @param {Array} books
+ */
 function updateCounters(books) {
   const countAll = document.getElementById('count-all');
   const countReading = document.getElementById('count-reading');
@@ -1053,6 +1090,11 @@ function updateCounters(books) {
   if (countReading) countReading.textContent = books.filter((b) => b.shelf === 'currently-reading').length;
 }
 
+/**
+ * Escapes unsafe HTML characters to prevent XSS.
+ * @param {string} str
+ * @returns {string} Safe string
+ */
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g, '&amp;')
@@ -1065,6 +1107,10 @@ function escapeHtml(str) {
 /* =========================================================================
    5. HORST-STYLE RAINBOW MUSIC NOTE TRAILING CURSOR
    ========================================================================= */
+/**
+ * Initializes the trailing rainbow music note cursor with an 18-node spring physics chain.
+ * Automatically bypassed on non-pointer / touch devices.
+ */
 function initTrailingMusicCursor() {
   const container = document.getElementById('cursor-trail-container');
   if (!container || window.matchMedia('(hover: none)').matches) return;
@@ -1075,13 +1121,14 @@ function initTrailingMusicCursor() {
   let baseHue = 0;
   let hasMoved = false;
 
-  // Sleek music note SVG (crisp vector graphic)
+  // Vector Music Note SVG
   const noteSvg = `
     <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
     </svg>
   `;
 
+  // Instantiate spring nodes
   for (let i = 0; i < NODE_COUNT; i++) {
     const el = document.createElement('div');
     el.className = 'cursor-trail-node';
@@ -1113,6 +1160,9 @@ function initTrailingMusicCursor() {
     hasMoved = false;
   });
 
+  /**
+   * Physics loop: eases the chain nodes towards the cursor with angular rotation and pastel rainbow hue cycling.
+   */
   function animate() {
     baseHue = (baseHue + 0.5) % 360;
 
@@ -1139,11 +1189,10 @@ function initTrailingMusicCursor() {
       curr.angle = Math.atan2(dy, dx) * (180 / Math.PI);
     }
 
-    // Color cycling with gentle pastel rainbow hues
+    // Color cycling with gentle pastel rainbow hues (65% sat, 70% light)
     for (let i = 0; i < nodes.length; i++) {
       const n = nodes[i];
       const hue = (baseHue + i * 14) % 360;
-      // Gentle, soft pastel tones (65% saturation, 70% lightness - gentle on the eyes)
       const color = `hsl(${hue}, 65%, 70%)`;
 
       n.el.style.color = color;
