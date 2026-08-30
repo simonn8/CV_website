@@ -420,7 +420,7 @@ function initLunarAudioPlayer() {
     } else if (iframe) {
       // Direct iframe fallback
       const autoParam = autoPlay ? "1" : "0";
-      iframe.src = `https://www.youtube.com/embed/${track.id}?autoplay=${autoParam}&enablejsapi=1&playsinline=1`;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${track.id}?autoplay=${autoParam}&enablejsapi=1&playsinline=1`;
     }
 
     // Update Text Titles
