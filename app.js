@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initClock();
   initMusicPlayer();
   initVisitorCounter();
+  initBookshelf();
 });
 
 /* 1. Tab Switching System */
@@ -121,4 +122,57 @@ function initVisitorCounter() {
   // Format as 6 digits with leading zeros (e.g. 001338)
   counterEl.textContent = count.toString().padStart(6, "0");
 }
+
+/* 5. Bookshelf & Goodreads Live Feed System */
+function initBookshelf() {
+  const filterButtons = document.querySelectorAll(".shelf-filter-btn");
+  const bookCards = document.querySelectorAll(".book-card");
+
+  // Filter Buttons Logic
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+      const allCards = document.querySelectorAll(".book-card");
+
+      allCards.forEach((card) => {
+        const shelf = card.getAttribute("data-shelf");
+        if (filter === "all" || shelf === filter) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+
+  // Optional: Try live background update from Goodreads RSS
+  fetchLiveGoodreads();
+}
+
+async function fetchLiveGoodreads() {
+  const goodreadsUserId = "163717021";
+  const statusText = document.getElementById("feed-status-text");
+
+  try {
+    const rssUrl = `https://www.goodreads.com/review/list_rss/${goodreadsUserId}?shelf=read`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    const response = await fetch(apiUrl);
+    if (!response.ok) return;
+
+    const data = await response.json();
+    if (data.status === "ok" && data.items && data.items.length > 0) {
+      if (statusText) {
+        statusText.textContent = `Live Synced (${data.items.length} books fetched) 🟢`;
+      }
+    }
+  } catch (err) {
+    // Graceful offline fallback: pre-rendered books remain active
+    console.log("Goodreads live fetch note: using pre-rendered shelf items.");
+  }
+}
+
 

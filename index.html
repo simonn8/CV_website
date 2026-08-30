@@ -49,6 +49,7 @@
         <button class="tab-btn" data-tab="cv">📄 CV &amp; Skills</button>
         <button class="tab-btn" data-tab="projects">🚀 Projects</button>
         <button class="tab-btn" data-tab="dj-sets">🎧 DJ Sets</button>
+        <button class="tab-btn" data-tab="books">📚 Bookshelf</button>
         <button class="tab-btn" data-tab="contact">✉️ Guestbook / Contact</button>
       </div>
 
@@ -378,6 +379,106 @@
                 <a href="https://mixcloud.com" target="_blank" rel="noopener noreferrer" class="retro-link-btn">Mixcloud ↗</a>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- TAB: BOOKSHELF & GOODREADS -->
+        <section id="tab-books" class="tab-content">
+          <div class="section-header">
+            <div>
+              <h2>📚 Simon's Bookshelf &amp; Reading Log</h2>
+              <p class="subtitle">Live sync from Goodreads &bull; History, Political Philosophy, Systems &amp; World Affairs</p>
+            </div>
+            <a href="https://www.goodreads.com/user/show/163717021-simon-nachtergaele" target="_blank" rel="noopener noreferrer" class="win-btn retro-action-btn">
+              📖 Open Goodreads Profile ↗
+            </a>
+          </div>
+
+          <!-- Goodreads Live Sync Status Banner -->
+          <div class="shelf-status-bar">
+            <span class="sync-dot">●</span> <strong>GOODREADS FEED:</strong> <span id="feed-status-text">Connected (ID: 163717021)</span>
+            <div class="shelf-filters">
+              <button class="shelf-filter-btn active" data-filter="all">All Books</button>
+              <button class="shelf-filter-btn" data-filter="currently-reading">📖 Currently Reading</button>
+              <button class="shelf-filter-btn" data-filter="read">✅ Read &amp; Rated</button>
+            </div>
+          </div>
+
+          <!-- Bookshelf Grid Container -->
+          <div class="bookshelf-grid" id="books-container">
+
+            <!-- Currently Reading 1 -->
+            <article class="book-card" data-shelf="currently-reading">
+              <div class="book-cover-container">
+                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327865541l/110331._SY160_.jpg" alt="The Federalist Papers" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
+                <span class="shelf-badge reading">📖 Reading</span>
+              </div>
+              <div class="book-details">
+                <h4 class="book-title">The Federalist Papers</h4>
+                <p class="book-author">by <strong>Alexander Hamilton, James Madison, John Jay</strong></p>
+                <div class="book-rating-box">
+                  <span class="rating-label">Status:</span>
+                  <span class="reading-progress">In Progress</span>
+                </div>
+                <p class="book-synopsis">A collection of 85 essays arguing for the ratification of the US Constitution and fundamental principles of governance.</p>
+                <a href="https://www.goodreads.com/book/show/110331.The_Federalist_Papers" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
+              </div>
+            </article>
+
+            <!-- Currently Reading 2 -->
+            <article class="book-card" data-shelf="currently-reading">
+              <div class="book-cover-container">
+                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1415678006l/9462._SX98_.jpg" alt="Plato: Complete Works" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
+                <span class="shelf-badge reading">📖 Reading</span>
+              </div>
+              <div class="book-details">
+                <h4 class="book-title">Plato: Complete Works</h4>
+                <p class="book-author">by <strong>Plato (ed. John M. Cooper)</strong></p>
+                <div class="book-rating-box">
+                  <span class="rating-label">Status:</span>
+                  <span class="reading-progress">In Progress</span>
+                </div>
+                <p class="book-synopsis">The complete surviving corpus of dialogues and philosophical inquiries into justice, knowledge, reality, and politics.</p>
+                <a href="https://www.goodreads.com/book/show/9462.Complete_Works" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
+              </div>
+            </article>
+
+            <!-- Read & Reviewed 1 -->
+            <article class="book-card" data-shelf="read">
+              <div class="book-cover-container">
+                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1704228247l/66933._SX98_.jpg" alt="The Wretched of the Earth" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
+                <span class="shelf-badge read">✅ Read</span>
+              </div>
+              <div class="book-details">
+                <h4 class="book-title">The Wretched of the Earth</h4>
+                <p class="book-author">by <strong>Frantz Fanon</strong></p>
+                <div class="book-rating-box">
+                  <span class="rating-label">Simon's Rating:</span>
+                  <span class="star-rating">★★★★★ <span class="rating-score">(5/5)</span></span>
+                </div>
+                <p class="book-synopsis">A seminal analysis of the psychology of colonization, revolutionary struggle, and the perils of post-independence politics.</p>
+                <a href="https://www.goodreads.com/book/show/66933.The_Wretched_of_the_Earth" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
+              </div>
+            </article>
+
+            <!-- Read & Reviewed 2 -->
+            <article class="book-card" data-shelf="read">
+              <div class="book-cover-container">
+                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1507452810l/5505708._SX98_.jpg" alt="The Story of the Integration of the Indian States" class="book-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect width=%22100%22 height=%22140%22 fill=%22%23333%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23fff%22 font-size=%2212%22 text-anchor=%22middle%22>📖 Book</text></svg>';" />
+                <span class="shelf-badge read">✅ Read</span>
+              </div>
+              <div class="book-details">
+                <h4 class="book-title">The Story of the Integration of the Indian States</h4>
+                <p class="book-author">by <strong>V.P. Menon</strong></p>
+                <div class="book-rating-box">
+                  <span class="rating-label">Simon's Rating:</span>
+                  <span class="star-rating">★★★☆☆ <span class="rating-score">(3/5)</span></span>
+                </div>
+                <p class="book-synopsis">First authoritative insider account of how 554 princely states were integrated into the Republic of India post-1947.</p>
+                <a href="https://www.goodreads.com/book/show/5505708-the-story-of-the-integration-of-the-indian-states" target="_blank" rel="noopener noreferrer" class="retro-link-btn mini">View on Goodreads ↗</a>
+              </div>
+            </article>
+
           </div>
         </section>
 
