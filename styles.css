@@ -313,6 +313,12 @@ body.site-body {
   text-transform: uppercase;
   overflow-wrap: break-word;
   word-break: break-word;
+  hyphens: auto;
+}
+
+.hero-name-first,
+.hero-name-last {
+  display: inline-block;
 }
 
 .hero-aura-card {
@@ -1521,8 +1527,8 @@ body.site-body {
   }
 
   .hero-title {
-    font-size: clamp(20px, 6.2vw, 32px);
-    line-height: 1.12;
+    font-size: clamp(16px, 5vw, 24px);
+    line-height: 1.15;
     letter-spacing: -0.3px;
     margin-bottom: 20px;
     word-break: break-word;
@@ -1692,6 +1698,11 @@ body.site-body {
 }
 
 @media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(14px, 4.4vw, 19px);
+    letter-spacing: -0.2px;
+  }
+
   .hero-tagline {
     gap: 4px;
   }
