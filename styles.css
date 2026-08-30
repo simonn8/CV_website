@@ -1,0 +1,771 @@
+/* ==========================================================================
+   2000s Retro Web Portfolio Stylesheet
+   Designed for Simon's Personal Haven (CV, Projects, DJ Sets)
+   ========================================================================== */
+
+:root {
+  --desktop-bg: #008080; /* Classic Windows 98 / 2000 Teal */
+  --win-gray: #c0c0c0;
+  --win-light: #ffffff;
+  --win-dark: #808080;
+  --win-darker: #404040;
+  --win-blue-start: #000080;
+  --win-blue-end: #1084d0;
+  --accent-cyan: #00ffff;
+  --accent-yellow: #ffff00;
+  --accent-lime: #00ff00;
+  --font-system: "Tahoma", "MS Sans Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Geneva, sans-serif;
+  --font-retro: "Courier New", Courier, monospace;
+}
+
+/* Reset & Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--desktop-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 16px 16px;
+  font-family: var(--font-system);
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+/* 1. Marquee Banner */
+.marquee-container {
+  width: 100%;
+  background: #000080;
+  color: var(--accent-yellow);
+  font-family: var(--font-retro);
+  font-weight: bold;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 2px outset #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+/* 2. Desktop & Window Container */
+.desktop-container {
+  width: 94%;
+  max-width: 900px;
+  margin: 24px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Classic Windows 3D Borders */
+.retro-window {
+  background: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  padding: 3px;
+}
+
+/* 3. Window Titlebar */
+.window-titlebar {
+  background: linear-gradient(90deg, var(--win-blue-start) 0%, var(--win-blue-end) 100%);
+  color: #ffffff;
+  padding: 4px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+  user-select: none;
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-icon {
+  font-size: 14px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.win-btn {
+  background: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+  font-family: var(--font-system);
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.win-btn:active {
+  border-color: var(--win-darker) var(--win-light) var(--win-light) var(--win-darker);
+  padding: 2px 5px 0 7px;
+}
+
+.close-btn {
+  margin-left: 2px;
+}
+
+/* 4. Menu Bar */
+.window-menubar {
+  background: var(--win-gray);
+  border-bottom: 1px solid var(--win-dark);
+  padding: 3px 6px;
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  user-select: none;
+}
+
+.menu-item {
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+  padding: 0 4px;
+  margin: 0 -4px;
+}
+
+/* 5. Navigation Tabs */
+.window-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px 6px 0;
+  background: var(--win-gray);
+  border-bottom: 2px solid var(--win-light);
+}
+
+.tab-btn {
+  background: #d4d0c8;
+  border: 2px solid;
+  border-color: var(--win-light) var(--win-dark) transparent var(--win-light);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--font-system);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333333;
+  position: relative;
+  top: 2px;
+}
+
+.tab-btn.active {
+  background: var(--win-gray);
+  border-color: var(--win-light) var(--win-darker) var(--win-gray) var(--win-light);
+  color: #000000;
+  z-index: 2;
+  padding-bottom: 8px;
+}
+
+.tab-btn:hover:not(.active) {
+  background: #e6e6e6;
+}
+
+/* 6. Window Body & Tab Contents */
+.window-body {
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--win-darker) var(--win-light) var(--win-light) var(--win-darker);
+  padding: 20px;
+  min-height: 420px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.15s ease-in;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #000080;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  color: #000080;
+}
+
+.subtitle {
+  color: #555555;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* 7. Profile Hero / About Tab */
+.profile-hero {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.avatar-box {
+  text-align: center;
+}
+
+.avatar-frame {
+  width: 100px;
+  height: 100px;
+  background: #000000;
+  border: 3px inset #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-placeholder {
+  font-size: 40px;
+}
+
+.avatar-caption {
+  font-size: 10px;
+  font-family: var(--font-retro);
+  font-weight: bold;
+  color: #008000;
+  margin-top: 5px;
+}
+
+.hero-text h2 {
+  font-size: 20px;
+  color: #000080;
+  margin-bottom: 4px;
+}
+
+.tagline {
+  color: #666666;
+  font-style: italic;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.status-box {
+  background: #ffffd0;
+  border: 1px solid #c0c000;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.retro-divider {
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  margin: 16px 0;
+}
+
+/* Content Grid & Retro Cards */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.retro-card {
+  background: #f4f4f4;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 12px;
+}
+
+.retro-card h3 {
+  font-size: 14px;
+  color: #000080;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.retro-card ul {
+  padding-left: 18px;
+}
+
+.retro-card li {
+  margin-bottom: 6px;
+}
+
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.retro-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* 8. CV Section Styles */
+.cv-section {
+  margin-bottom: 18px;
+}
+
+.cv-section-title {
+  font-size: 14px;
+  color: #000080;
+  background: #e4e4f4;
+  padding: 4px 8px;
+  border-left: 4px solid #000080;
+  margin-bottom: 10px;
+}
+
+.timeline-item {
+  border-left: 2px solid #000080;
+  padding-left: 12px;
+  margin-left: 6px;
+  margin-bottom: 12px;
+}
+
+.timeline-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.timeline-date {
+  font-family: var(--font-retro);
+  font-size: 11px;
+  color: #555555;
+  background: #e8e8e8;
+  padding: 1px 6px;
+  border: 1px solid #ccc;
+}
+
+.timeline-desc {
+  font-size: 12px;
+  color: #444444;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.skill-category h4 {
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #333333;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: #000080;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border: 1px outset #ffffff;
+}
+
+.retro-action-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* 9. Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  background: #f9f9f9;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.project-header h4 {
+  font-size: 13px;
+  color: #000080;
+}
+
+.project-desc {
+  font-size: 12px;
+  color: #444444;
+  margin-bottom: 10px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.mini-tag {
+  background: #e0e0e0;
+  border: 1px solid #a0a0a0;
+  font-size: 10px;
+  padding: 1px 5px;
+}
+
+.status-badge {
+  font-family: var(--font-retro);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.status-badge.live { color: #008000; }
+.status-badge.wip { color: #cc6600; }
+.status-badge.planned { color: #555555; }
+
+/* 10. Winamp / DJ Set Player Widget */
+.winamp-player {
+  background: #242424;
+  border: 3px solid;
+  border-color: #888888 #111111 #111111 #888888;
+  padding: 10px;
+  color: #00ff00;
+  font-family: var(--font-retro);
+  margin-bottom: 20px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.winamp-titlebar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #ffffff;
+  background: #111155;
+  padding: 2px 6px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.winamp-badge {
+  color: #ffff00;
+  font-size: 10px;
+}
+
+.winamp-display {
+  background: #000000;
+  border: 2px inset #555555;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-info {
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.now-playing-label {
+  color: #00ffff;
+  font-size: 10px;
+  display: block;
+}
+
+.track-title {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.lcd-bars {
+  display: flex;
+  gap: 3px;
+  height: 24px;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 4px;
+  height: 4px;
+  background: #00ff00;
+  transition: height 0.1s ease;
+}
+
+.playing .bar {
+  animation: equalizer 0.6s infinite alternate ease-in-out;
+}
+
+.playing .bar:nth-child(2n) { animation-delay: 0.1s; }
+.playing .bar:nth-child(3n) { animation-delay: 0.2s; }
+.playing .bar:nth-child(4n) { animation-delay: 0.3s; }
+
+@keyframes equalizer {
+  0% { height: 4px; background: #00ff00; }
+  50% { height: 16px; background: #ffff00; }
+  100% { height: 24px; background: #ff0000; }
+}
+
+.winamp-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.player-btn {
+  background: #444444;
+  color: #ffffff;
+  border: 2px solid;
+  border-color: #888888 #222222 #222222 #888888;
+  font-family: var(--font-retro);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.player-btn:active {
+  border-color: #222222 #888888 #888888 #222222;
+}
+
+.player-status {
+  margin-left: auto;
+  font-size: 10px;
+  color: #00ffff;
+}
+
+/* Mix List */
+.mix-list-title {
+  font-size: 14px;
+  color: #000080;
+  margin-bottom: 10px;
+}
+
+.mix-item {
+  background: #f9f9f9;
+  border: 1px solid #d0d0d0;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mix-meta h4 {
+  font-size: 13px;
+  color: #222222;
+}
+
+.mix-meta p {
+  font-size: 11px;
+  color: #666666;
+}
+
+.mix-links {
+  display: flex;
+  gap: 6px;
+}
+
+.retro-link-btn {
+  background: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+  color: #000080;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.retro-link-btn:hover {
+  background: #e0e0e0;
+}
+
+/* 11. Guestbook / Contact Form */
+.contact-links {
+  list-style: none;
+}
+
+.contact-links li {
+  margin-bottom: 8px;
+}
+
+.contact-links a {
+  color: #000080;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.retro-input,
+.retro-textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 2px inset #808080;
+  font-family: var(--font-system);
+  font-size: 12px;
+  padding: 5px;
+}
+
+.retro-submit-btn {
+  padding: 6px 14px;
+  font-weight: bold;
+}
+
+/* 12. Window Status Bar */
+.window-statusbar {
+  background: var(--win-gray);
+  border-top: 1px solid var(--win-dark);
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #333333;
+  margin-top: 4px;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.divider {
+  color: #888888;
+}
+
+/* 13. Retro Badges & Visitor Counter Footer */
+.retro-footer-widgets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.visitor-counter-box {
+  background: #000000;
+  border: 2px inset #808080;
+  padding: 6px 14px;
+  text-align: center;
+  color: #00ff00;
+  font-family: var(--font-retro);
+}
+
+.counter-label {
+  font-size: 9px;
+  color: #aaaaaa;
+  display: block;
+  letter-spacing: 1px;
+}
+
+.counter-display {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #00ff00;
+}
+
+.retro-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.retro-badge {
+  font-family: var(--font-retro);
+  font-size: 9px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border: 1px solid #000000;
+  box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #000000 inset;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.badge-html { background: #ff6600; color: #ffffff; }
+.badge-ie { background: #0066cc; color: #ffffff; }
+.badge-git { background: #24292e; color: #00ff00; }
+.badge-y2k { background: #990099; color: #ffff00; }
+
+/* 14. Responsive tweaks */
+@media (max-width: 600px) {
+  .profile-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .window-menubar {
+    display: none;
+  }
+  .window-tabs {
+    flex-direction: column;
+  }
+  .tab-btn {
+    border-radius: 0;
+    width: 100%;
+    text-align: left;
+  }
+}
