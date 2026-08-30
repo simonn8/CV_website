@@ -323,7 +323,13 @@ body.site-body {
   padding: 32px;
   position: relative;
   overflow: hidden;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.aura-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .hero-aura-card::before {
