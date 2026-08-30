@@ -585,10 +585,13 @@
             <span class="loading-spinner">🪐</span> Querying <code>data/books.json</code> database...
           </div>
 
-          <!-- Results Counter -->
+          <!-- Results Counter & Live Sync -->
           <div class="db-results-bar">
             <span>Showing <strong id="results-count">47</strong> books matching query:</span>
-            <span class="db-sync-badge">● DB STATUS: READY (CLIENT QUERY ENGINE)</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button id="sync-goodreads-btn" class="retro-btn-space sm" title="Pull latest reviews from Goodreads RSS">🔄 Sync Goodreads</button>
+              <span class="db-sync-badge" id="db-sync-status-badge">● DB STATUS: 47 BOOKS READY</span>
+            </div>
           </div>
 
           <!-- Dynamic Book Shelf Grid Container -->
