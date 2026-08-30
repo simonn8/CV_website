@@ -666,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initAudioStream();
   initLibraryCatalog();
+  initTrailingMusicCursor();
 });
 
 /* =========================================================================
@@ -1049,4 +1050,98 @@ function escapeHtml(str) {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+}
+
+/* =========================================================================
+   5. HORST-STYLE RAINBOW MUSIC NOTE TRAILING CURSOR
+   ========================================================================= */
+function initTrailingMusicCursor() {
+  const container = document.getElementById('cursor-trail-container');
+  if (!container || window.matchMedia('(hover: none)').matches) return;
+
+  const NODE_COUNT = 18;
+  const nodes = [];
+  let mouse = { x: -100, y: -100 };
+  let baseHue = 0;
+  let hasMoved = false;
+
+  // Sleek music note SVG (crisp vector graphic)
+  const noteSvg = `
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  `;
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    const el = document.createElement('div');
+    el.className = 'cursor-trail-node';
+    el.innerHTML = noteSvg;
+    el.style.opacity = '0';
+    container.appendChild(el);
+
+    nodes.push({
+      el,
+      x: -100,
+      y: -100,
+      angle: 0,
+      scale: Math.max(0.4, 1 - (i / NODE_COUNT) * 0.55),
+      opacity: Math.max(0.15, 1 - (i / NODE_COUNT) * 0.7)
+    });
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    if (!hasMoved) {
+      hasMoved = true;
+      nodes.forEach((n) => (n.el.style.opacity = n.opacity.toString()));
+    }
+  });
+
+  window.addEventListener('mouseleave', () => {
+    nodes.forEach((n) => (n.el.style.opacity = '0'));
+    hasMoved = false;
+  });
+
+  function animate() {
+    baseHue = (baseHue + 0.5) % 360;
+
+    // Head node eases to mouse position
+    if (nodes.length > 0) {
+      const head = nodes[0];
+      const dxHead = mouse.x - head.x;
+      const dyHead = mouse.y - head.y;
+      head.x += dxHead * 0.42;
+      head.y += dyHead * 0.42;
+      head.angle = Math.atan2(dyHead, dxHead) * (180 / Math.PI);
+    }
+
+    // Subsequent nodes follow with spring-like trail
+    for (let i = 1; i < nodes.length; i++) {
+      const prev = nodes[i - 1];
+      const curr = nodes[i];
+
+      const dx = prev.x - curr.x;
+      const dy = prev.y - curr.y;
+
+      curr.x += dx * 0.36;
+      curr.y += dy * 0.36;
+      curr.angle = Math.atan2(dy, dx) * (180 / Math.PI);
+    }
+
+    // Color cycling with gentle pastel rainbow hues
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      const hue = (baseHue + i * 14) % 360;
+      // Gentle, soft pastel tones (65% saturation, 70% lightness - gentle on the eyes)
+      const color = `hsl(${hue}, 65%, 70%)`;
+
+      n.el.style.color = color;
+      n.el.style.transform = `translate3d(${n.x}px, ${n.y}px, 0) rotate(${n.angle}deg) scale(${n.scale})`;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
 }
