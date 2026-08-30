@@ -710,41 +710,30 @@ function initScrollSpy() {
 }
 
 /* =========================================================================
-   3. SOUND STREAM & YOUTUBE PLAYER
+   3. SOUND STREAM & YOUTUBE PLAYER (UNIFIED SINGLE SOURCE)
    ========================================================================= */
 window.onYouTubeIframeAPIReady = function () {
-  const container = document.getElementById('youtube-player');
-  if (!container) return;
+  const iframe = document.getElementById('main-youtube-iframe');
+  if (!iframe) return;
 
-  ytPlayer = new YT.Player('youtube-player', {
-    height: '100%',
-    width: '100%',
-    videoId: djSets[currentTrackIndex].id,
-    playerVars: {
-      autoplay: 1,
-      playsinline: 1,
-      controls: 1,
-      rel: 0
-    },
-    events: {
-      onReady: (event) => {
-        isYTReady = true;
-        try {
-          event.target.playVideo();
-          setAudioState(true);
-        } catch (e) {
-          console.log('Autoplay standby for user gesture...');
-        }
-      },
-      onStateChange: (event) => {
-        if (event.data === YT.PlayerState.PLAYING) {
-          setAudioState(true);
-        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-          setAudioState(false);
+  try {
+    ytPlayer = new YT.Player('main-youtube-iframe', {
+      events: {
+        onReady: () => {
+          isYTReady = true;
+        },
+        onStateChange: (event) => {
+          if (event.data === YT.PlayerState.PLAYING) {
+            setAudioState(true);
+          } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+            setAudioState(false);
+          }
         }
       }
-    }
-  });
+    });
+  } catch (e) {
+    console.error('YouTube Player Init:', e);
+  }
 };
 
 function initAudioStream() {
@@ -761,33 +750,6 @@ function initAudioStream() {
   const barPlayBtn = document.getElementById('bar-play-btn');
   const barPrevBtn = document.getElementById('bar-prev-btn');
   const barNextBtn = document.getElementById('bar-next-btn');
-
-  function loadTrack(index, autoPlay = true) {
-    currentTrackIndex = (index + djSets.length) % djSets.length;
-    const track = djSets[currentTrackIndex];
-
-    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-      ytPlayer.loadVideoById(track.id);
-      if (autoPlay) ytPlayer.playVideo();
-    } else if (iframe) {
-      const autoParam = autoPlay ? '1' : '0';
-      iframe.src = `https://www.youtube-nocookie.com/embed/${track.id}?autoplay=${autoParam}&enablejsapi=1&playsinline=1`;
-    }
-
-    if (titleEl) titleEl.textContent = track.title;
-    if (barTitleEl) barTitleEl.textContent = track.title;
-
-    const setRows = document.querySelectorAll('.set-row');
-    setRows.forEach((row, rIdx) => {
-      if (rIdx === currentTrackIndex) {
-        row.classList.add('active-set');
-      } else {
-        row.classList.remove('active-set');
-      }
-    });
-
-    setAudioState(autoPlay);
-  }
 
   function setAudioState(playing) {
     isAudioPlaying = playing;
@@ -814,13 +776,46 @@ function initAudioStream() {
     }
   }
 
+  function loadTrack(index, autoPlay = true) {
+    currentTrackIndex = (index + djSets.length) % djSets.length;
+    const track = djSets[currentTrackIndex];
+
+    if (titleEl) titleEl.textContent = track.title;
+    if (barTitleEl) barTitleEl.textContent = track.title;
+
+    const setRows = document.querySelectorAll('.set-row');
+    setRows.forEach((row, rIdx) => {
+      if (rIdx === currentTrackIndex) {
+        row.classList.add('active-set');
+      } else {
+        row.classList.remove('active-set');
+      }
+    });
+
+    const targetSrc = `https://www.youtube-nocookie.com/embed/${track.id}?enablejsapi=1&playsinline=1&rel=0${autoPlay ? '&autoplay=1' : ''}`;
+
+    if (iframe) {
+      iframe.src = targetSrc;
+    }
+
+    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+      try {
+        if (autoPlay) {
+          ytPlayer.loadVideoById(track.id);
+        } else {
+          ytPlayer.cueVideoById(track.id);
+        }
+      } catch (e) {}
+    }
+
+    setAudioState(autoPlay);
+  }
+
   function playTrack() {
     if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-      ytPlayer.unMute();
       ytPlayer.playVideo();
-    } else if (iframe) {
-      const track = djSets[currentTrackIndex];
-      iframe.src = `https://www.youtube-nocookie.com/embed/${track.id}?autoplay=1&enablejsapi=1&playsinline=1`;
+    } else if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }
     setAudioState(true);
   }
@@ -834,12 +829,12 @@ function initAudioStream() {
     setAudioState(false);
   }
 
-  if (playBtn) playBtn.addEventListener('click', () => isAudioPlaying ? pauseTrack() : playTrack());
+  if (playBtn) playBtn.addEventListener('click', () => (isAudioPlaying ? pauseTrack() : playTrack()));
   if (pauseBtn) pauseBtn.addEventListener('click', () => pauseTrack());
   if (nextBtn) nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1, true));
   if (prevBtn) prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1, true));
 
-  if (barPlayBtn) barPlayBtn.addEventListener('click', () => isAudioPlaying ? pauseTrack() : playTrack());
+  if (barPlayBtn) barPlayBtn.addEventListener('click', () => (isAudioPlaying ? pauseTrack() : playTrack()));
   if (barNextBtn) barNextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1, true));
   if (barPrevBtn) barPrevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1, true));
 
@@ -859,17 +854,6 @@ function initAudioStream() {
       loadTrack(idx, true);
     });
   });
-
-  loadTrack(0, true);
-
-  const kickAutoplayOnGesture = () => {
-    playTrack();
-    window.removeEventListener('click', kickAutoplayOnGesture);
-    window.removeEventListener('touchstart', kickAutoplayOnGesture);
-  };
-
-  window.addEventListener('click', kickAutoplayOnGesture, { once: true });
-  window.addEventListener('touchstart', kickAutoplayOnGesture, { once: true });
 }
 
 /* =========================================================================
