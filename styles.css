@@ -1380,33 +1380,265 @@ body.site-body {
   color: var(--text-primary);
 }
 
-/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+/* ==================== COMPREHENSIVE RESPONSIVE BREAKPOINTS ==================== */
+
 @media (max-width: 992px) {
   .hero-aura-card {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
+
   .hero-poster-preview {
-    display: none;
+    display: flex;
+    max-width: 240px;
+    margin: 0 auto;
   }
+
   .editorial-grid-2,
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 36px;
   }
+
+  .matrix-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0 16px 120px;
+  }
+
+  /* Mobile Sticky Navigation */
+  .top-nav {
+    padding: 10px 0;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .nav-brand {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-meta {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+  }
+
   .nav-links {
-    display: none; /* Clean mobile */
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
   }
-  .hero-title {
-    font-size: 32px;
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
-  .deck-control-bar {
+
+  .nav-link {
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .nav-link.active {
+    border-color: var(--accent-active);
+    background: rgba(214, 242, 112, 0.08);
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 40px 0 30px;
+  }
+
+  .hero-header-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
-  .dock-left {
+
+  .hero-title {
+    font-size: clamp(28px, 8vw, 42px);
+    margin-bottom: 20px;
+  }
+
+  .hero-aura-card {
+    padding: 20px 16px;
+  }
+
+  .hero-lead {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .hero-poster-preview {
     max-width: 200px;
+  }
+
+  .poster-thumbnail {
+    max-height: 240px;
+  }
+
+  /* Section Headings */
+  .page-section {
+    padding: 50px 0 40px;
+  }
+
+  .section-heading {
+    font-size: 24px;
+  }
+
+  /* Sound & Video Deck */
+  .sound-deck-container {
+    border-radius: 6px;
+  }
+
+  .deck-control-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 14px;
+  }
+
+  .deck-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 6px;
+  }
+
+  .transport-btn {
+    padding: 8px 4px;
+    font-size: 11px;
+    min-height: 40px;
+  }
+
+  .set-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .set-actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn,
+  .action-link {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+  }
+
+  /* Library Section */
+  .library-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .shelf-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .shelf-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .search-sort-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .search-wrapper,
+  .sort-dropdown {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .editorial-books-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .book-card-editorial {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .book-cover-thumb {
+    width: 70px;
+    height: 105px;
+  }
+
+  /* Matrix */
+  .matrix-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Floating Audio Dock */
+  .floating-audio-dock {
+    max-width: calc(100vw - 24px);
+    left: 12px;
+    right: 12px;
+    transform: none;
+    bottom: 12px;
+    padding: 8px 12px;
+  }
+
+  .dock-left {
+    max-width: 140px;
+  }
+
+  .dock-title {
+    font-size: 11px;
+  }
+
+  .dock-right {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-tagline {
+    gap: 4px;
+  }
+
+  .tag-pill {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .exp-bullets {
+    padding-left: 14px;
+  }
+
+  .contact-col {
+    padding: 16px;
   }
 }
