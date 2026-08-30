@@ -121,3 +121,4 @@ function initVisitorCounter() {
   // Format as 6 digits with leading zeros (e.g. 001338)
   counterEl.textContent = count.toString().padStart(6, "0");
 }
+

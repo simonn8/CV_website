@@ -383,6 +383,25 @@ body {
   color: #444444;
 }
 
+.job-role {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000080;
+  margin-bottom: 4px;
+}
+
+.cv-bullet-list {
+  padding-left: 18px;
+  font-size: 12px;
+  color: #333333;
+  margin-top: 4px;
+}
+
+.cv-bullet-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
 .skills-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -769,3 +788,4 @@ body {
     text-align: left;
   }
 }
+
