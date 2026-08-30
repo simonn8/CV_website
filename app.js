@@ -737,7 +737,6 @@ window.onYouTubeIframeAPIReady = function () {
 };
 
 function initAudioStream() {
-  const iframe = document.getElementById('main-youtube-iframe');
   const titleEl = document.getElementById('current-track-name');
   const barTitleEl = document.getElementById('bar-track-title');
   const visualizerEl = document.getElementById('visualizer-bars');
@@ -792,38 +791,35 @@ function initAudioStream() {
       }
     });
 
-    const targetSrc = `https://www.youtube-nocookie.com/embed/${track.id}?enablejsapi=1&playsinline=1&rel=0${autoPlay ? '&autoplay=1' : ''}`;
-
-    if (iframe) {
-      iframe.src = targetSrc;
-    }
-
-    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-      try {
-        if (autoPlay) {
-          ytPlayer.loadVideoById(track.id);
-        } else {
-          ytPlayer.cueVideoById(track.id);
-        }
-      } catch (e) {}
+    const screenWrapper = document.querySelector('.video-screen-wrapper');
+    if (screenWrapper) {
+      const autoParam = autoPlay ? 'autoplay=1&' : '';
+      screenWrapper.innerHTML = `
+        <iframe 
+          id="main-youtube-iframe"
+          src="https://www.youtube-nocookie.com/embed/${track.id}?${autoParam}enablejsapi=1&playsinline=1&rel=0"
+          title="${escapeHtml(track.title)}"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      `;
     }
 
     setAudioState(autoPlay);
   }
 
   function playTrack() {
-    if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-      ytPlayer.playVideo();
-    } else if (iframe && iframe.contentWindow) {
+    const iframe = document.getElementById('main-youtube-iframe');
+    if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     }
     setAudioState(true);
   }
 
   function pauseTrack() {
-    if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-      ytPlayer.pauseVideo();
-    } else if (iframe && iframe.contentWindow) {
+    const iframe = document.getElementById('main-youtube-iframe');
+    if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }
     setAudioState(false);
